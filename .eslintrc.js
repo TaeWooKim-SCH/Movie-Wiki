@@ -6,11 +6,22 @@ module.exports = {
   },
   extends: [
     'airbnb',
-    'prettier/react',
+    'prettier',
     'eslint:recommended',
     'plugin:prettier/recommended',
+    'react-app',
   ],
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    requireConfigFile: false,
+    babelOptions: {
+      presets: ['@babel/preset-react'],
+      // 다른 Babel 옵션들...
+    },
+  },
   rules: {
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'react/prop-types': 'off',
   },
 };
