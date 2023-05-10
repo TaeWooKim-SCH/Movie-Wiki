@@ -6,6 +6,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import MovieInfo from './MovieInfo';
 import MovieOverViewVideo from './MovieOverViewVideo';
 import useFetchMovie from '../Hooks/use-fetchMovie';
+import API_KEY from '../key';
 
 const ModalDiv = tw.div`
   w-4/5 h-4/5 relative rounded-md overflow-hidden
@@ -41,7 +42,7 @@ function ModalOverlay({ movieId = 76600 }) {
 
   useEffect(() => {
     fetchMovieData(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=1fcd5ebc68de73e3c682786dadc576c4&language=ko`,
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=ko`,
       data => {
         setMovieData(data);
         setBackdropurl(`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`);
@@ -49,13 +50,13 @@ function ModalOverlay({ movieId = 76600 }) {
       },
     );
     fetchVideoData(
-      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=1fcd5ebc68de73e3c682786dadc576c4&language=ko`,
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=ko`,
       data => {
         setVideoData(data);
       },
     );
     fetchCreditData(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=1fcd5ebc68de73e3c682786dadc576c4&language=ko`,
+      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=ko`,
       data => {
         setCreditData(data);
       },
