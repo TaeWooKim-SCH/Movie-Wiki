@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import styled from 'styled-components';
 
@@ -15,18 +15,26 @@ const MovieGenres = styled.li`
 `;
 
 function MovieOverViewVideo({ posterurl, movieData, videoData }) {
-  const videopath = videoData.results.find(video => {
-    return video.site === 'YouTube';
-  });
+  const [videoPath, setVideoPath] = useState(null);
+
+  useEffect(() => {
+    if (videoData.results.length) {
+      setVideoPath(
+        videoData.results.find(video => {
+          return video.site === 'YouTube';
+        }),
+      );
+    }
+  }, []);
 
   return (
     <>
       <div className="border-[0.3px] border-slate-600 my-10" />
       <div className="flex gap-5 text-white ">
         <MoviePoster src={posterurl} alt="moviePoster" />
-        <div className="flex justify-between">
+        <div className="flex justify-between w-full">
           <div className="flex flex-col w-1/2 h-full justify-between">
-            <p>{movieData.overview}</p>
+            <p className="break-keep">{movieData.overview}</p>
             <ul>
               {movieData.genres.map(genre => {
                 return (
@@ -40,15 +48,17 @@ function MovieOverViewVideo({ posterurl, movieData, videoData }) {
               })}
             </ul>
           </div>
-          <iframe
-            width="242"
-            height="143"
-            src={`https://www.${videopath.site}.com/embed/${videopath.key}`}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="self-end"
-          />
+          {videoPath && (
+            <iframe
+              width="242"
+              height="143"
+              src={`https://www.${videoPath.site}.com/embed/${videoPath.key}`}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className="self-end"
+            />
+          )}
         </div>
       </div>
     </>

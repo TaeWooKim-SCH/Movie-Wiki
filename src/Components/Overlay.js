@@ -28,7 +28,7 @@ const Button = tw.button`
 absolute top-5 right-5 
 `;
 
-function ModalOverlay({ movieId = 76600 }) {
+function ModalOverlay({ movieId = 447365 }) {
   const [movieData, setMovieData] = useState(null);
   const [backdropurl, setBackdropurl] = useState('');
   const [posterurl, setPosterurl] = useState('');
@@ -64,7 +64,8 @@ function ModalOverlay({ movieId = 76600 }) {
   }, []);
 
   useEffect(() => {
-    if (movieData && videoData && creditData) setIsFetching(false);
+    if (movieData !== null && videoData !== null && creditData !== null)
+      setIsFetching(false);
   }, [movieData, videoData, creditData]);
 
   return (

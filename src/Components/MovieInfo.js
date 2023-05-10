@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { BsBookmarkPlus, BsFillBookmarkPlusFill } from 'react-icons/bs';
+import tw from 'tailwind-styled-components';
+
+const BoldP = tw.p`
+  font-bold
+`;
 
 function MovieInfo({ movieData, creditData }) {
   const cast = creditData.cast.slice(0, 5).map(el => el.name);
+  const releaseYear = movieData.release_date.split('-')[0];
   const [isBookmark, setIsBookmart] = useState(false);
   const starPoint = Number(movieData.vote_average).toFixed(1);
 
@@ -28,12 +34,15 @@ function MovieInfo({ movieData, creditData }) {
           onClick={HandlerBookmark}
         />
       )}
-      <div className="flex my-2 text-white">
+      <div className="flex my-3 text-white">
         <div className="flex gap-2 mr-9">
-          <p>{movieData.release_date.split('-')[0]}</p>
-          <p>{movieData.runtime}분</p>
+          <BoldP className="mr-2">{releaseYear}</BoldP>
+          <BoldP>{movieData.runtime}분</BoldP>
         </div>
-        <div>{starPoint}</div>
+        <div>
+          <BoldP>{starPoint}</BoldP>
+          {/* 별점 svg 추가해야함 */}
+        </div>
       </div>
       <div className="flex">
         <p className=" mr-2 text-slate-600">출연</p>
