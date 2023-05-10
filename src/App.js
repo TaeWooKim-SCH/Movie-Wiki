@@ -1,18 +1,13 @@
 import React from 'react';
 import './App.css';
-import tw from 'tailwind-styled-components';
+import Overlay from './Components/Overlay';
 
 function App() {
   return (
     <div className="App">
-      <Test>1</Test>
+      <Overlay />;
     </div>
   );
 }
-
-const Test = tw.div`
-  font-black
-  text-xl
-`;
 
 export default App;
