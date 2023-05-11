@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import tw from 'tailwind-styled-components';
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
-import MovieInfo from './MovieInfo';
-import MovieOverViewVideo from './MovieOverViewVideo';
+import MovieInfo from '../Components/MovieInfo';
+import MovieOverViewVideo from '../Components/MovieOverViewVideo';
 import useFetchMovie from '../Hooks/use-fetchMovie';
 import API_KEY from '../key';
 
@@ -28,6 +28,7 @@ const Button = tw.button`
 absolute top-5 right-5 
 `;
 
+// 모달 닫기 버튼 및  backdrop 클릭 시 닫히는 것 movieCard 추가 후 구현 + 별점 svg + 모달 열려있을 때 scroll 금지
 function ModalOverlay({ movieId = 447365 }) {
   const [movieData, setMovieData] = useState(null);
   const [backdropurl, setBackdropurl] = useState('');
@@ -102,7 +103,7 @@ function Backdrop() {
   );
 }
 
-function Overlay() {
+function MovieDetail() {
   return (
     <>
       {ReactDOM.createPortal(
@@ -113,4 +114,4 @@ function Overlay() {
   );
 }
 
-export default Overlay;
+export default MovieDetail;

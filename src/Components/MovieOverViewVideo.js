@@ -50,8 +50,8 @@ function MovieOverViewVideo({ posterurl, movieData, videoData }) {
           </div>
           {videoPath && (
             <iframe
-              width="242"
-              height="143"
+              width="30%"
+              height="50%"
               src={`https://www.${videoPath.site}.com/embed/${videoPath.key}`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Overlay from './Components/Overlay';
+import MovieDetail from './Pages/MovieDetail';
 
 function App() {
   return (
     <div className="App">
-      <Overlay />;
+      <MovieDetail />;
     </div>
   );
 }

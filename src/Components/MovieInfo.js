@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { BsBookmarkPlus, BsFillBookmarkPlusFill } from 'react-icons/bs';
 import tw from 'tailwind-styled-components';
+import StarRatings from 'react-star-ratings';
 
 const BoldP = tw.p`
   font-bold
 `;
 
 function MovieInfo({ movieData, creditData }) {
+  const [isBookmark, setIsBookmart] = useState(false);
   const cast = creditData.cast.slice(0, 5).map(el => el.name);
   const releaseYear = movieData.release_date.split('-')[0];
-  const [isBookmark, setIsBookmart] = useState(false);
   const starPoint = Number(movieData.vote_average).toFixed(1);
 
   const HandlerBookmark = () => {
@@ -39,9 +40,17 @@ function MovieInfo({ movieData, creditData }) {
           <BoldP className="mr-2">{releaseYear}</BoldP>
           <BoldP>{movieData.runtime}분</BoldP>
         </div>
-        <div>
-          <BoldP>{starPoint}</BoldP>
-          {/* 별점 svg 추가해야함 */}
+        <div className="flex items-center">
+          <BoldP className="mr-3">{starPoint}</BoldP>
+          <StarRatings
+            className="flex items-center"
+            rating={Number(starPoint) / 2}
+            starRatedColor="#FAB815"
+            svgIconViewBox="0 13 51 35"
+            starDimension="17px"
+            starSpacing="1px"
+            numberOfStars={5}
+          />
         </div>
       </div>
       <div className="flex">
