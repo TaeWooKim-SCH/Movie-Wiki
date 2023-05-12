@@ -1,5 +1,4 @@
 import React from 'react';
-// import tw from 'tailwind-styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Navbar from './Components/Navbar';
@@ -21,10 +20,5 @@ function App() {
     </div>
   );
 }
-
-// const Test = tw.div`
-//   font-black
-//   text-xl
-// `;
 
 export default App;
