@@ -5,28 +5,28 @@ module.exports = {
     node: true,
   },
   extends: [
-    "airbnb",
-    "prettier",
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "react-app",
+    'airbnb',
+    'prettier',
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+    'react-app',
   ],
-  parser: "@babel/eslint-parser",
+  parser: '@babel/eslint-parser',
   parserOptions: {
     requireConfigFile: false,
     babelOptions: {
-      presets: ["@babel/preset-react"],
+      presets: ['@babel/preset-react'],
       // 다른 Babel 옵션들...
     },
   },
   rules: {
-    "react/jsx-filename-extension": ["error", { extensions: [".js", ".jsx"] }],
-    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
-    "react/prop-types": "off",
-    "prettier/prettier": [
-      "error",
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'react/prop-types': 'off',
+    'prettier/prettier': [
+      'error',
       {
-        endOfLine: "auto",
+        endOfLine: 'auto',
       },
     ],
   },
