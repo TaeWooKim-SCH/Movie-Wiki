@@ -2,7 +2,27 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      brightness: {
+        40: '.40',
+      },
+      backfaceVisibility: {
+        hidden: 'hidden',
+      },
+      colors: {
+        backgroundNormal: '#141414',
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    ({ addUtilities }) => {
+      const newUtilities = {
+        '.backface-hidden': {
+          backfaceVisibility: 'hidden',
+        },
+      };
+
+      addUtilities(newUtilities, ['responsive']);
+    },
+  ],
 };

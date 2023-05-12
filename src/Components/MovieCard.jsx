@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import tw from 'tailwind-styled-components';
-
-const TEXT_LENGTH_LIMIT = 12;
-const STORY_LENGTH_LIMIT = 80;
+import { IoStarSharp } from 'react-icons/io5';
+import { TEXT_LENGTH_LIMIT, STORY_LENGTH_LIMIT } from '../Assets/ConstantValue';
 
 function MovieCard({ movie }) {
-  const movieStory = movie.overview;
+  const [isMouseOn, setIsMouseOn] = useState(false);
+  const { title, overview } = movie;
   const moviePoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
   const date = movie.release_date.slice(0, 4);
   const starPoint = movie.vote_average;
+  const cardPosterClassName = isMouseOn && 'scale-105 brightness-40';
 
   const textLengthOverCut = (text, len) => {
     if (len === TEXT_LENGTH_LIMIT) {
@@ -24,54 +25,56 @@ function MovieCard({ movie }) {
     return text;
   };
 
-  const [isMouseOn, setIsMouseOn] = useState(false);
-  const [showStory, setShowStory] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setShowStory(isMouseOn);
-    }, 100);
-  }, [isMouseOn]);
+  const handleMouseEnter = () => {
+    setIsMouseOn(true);
+  };
+  const handleMouseLeave = () => {
+    setIsMouseOn(false);
+  };
 
   return (
     <Card
-      onMouseEnter={() => setIsMouseOn(true)}
-      onMouseLeave={() => setIsMouseOn(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={() =>
+        console.log('클릭 시, 상세페이지 출력 이벤트 핸들러 동작할 예정')
+      }
     >
       <div className="h-52 relative">
-        {showStory && (
-          <div className="w-full h-full top-0 left-0 absolute z-10 text-white flex justify-center items-center">
-            {textLengthOverCut(movieStory, STORY_LENGTH_LIMIT)}
-          </div>
-        )}
         <CardPoster
-          className={`${isMouseOn ? 'scale-105 blur-sm' : 'scale-100'}`}
+          className={`${cardPosterClassName}`}
           src={moviePoster}
           alt="포스터"
         />
+
+        <CardStory className={`${isMouseOn ? 'opacity-100' : 'opacity-0'}`}>
+          {textLengthOverCut(overview, STORY_LENGTH_LIMIT)}
+        </CardStory>
       </div>
-      <div className="h-12 flex flex-col">
+      <div className="h-12 flex flex-col bg-transparent">
         <div className="text-white">
-          {textLengthOverCut(movie.title, TEXT_LENGTH_LIMIT)}
+          {textLengthOverCut(title, TEXT_LENGTH_LIMIT)}
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between text-sm">
           <div className="text-white">{date}</div>
-          <div className="text-red-500 mr-2">⭐️ {starPoint}</div>
+          <div className="text-red-500 mr-2 flex">
+            <IoStarSharp className="mt-1 mr-1" />
+            {starPoint}
+          </div>
         </div>
       </div>
     </Card>
   );
 }
 
-const Card = tw.div`
+const Card = tw.article`
   flex
   flex-col
   w-44
   h-64
   m-5
-  bg-black
-  shadow-2xl
-  shadow-gray-700
+  cursor-pointer
+  text-base
 `;
 
 const CardPoster = tw.img`
@@ -80,8 +83,23 @@ const CardPoster = tw.img`
   w-full
   h-full
   absolute
-  ease-in
-  duration-100 
+  duration-300
+  backface-hidden
+`;
+
+const CardStory = tw.div`
+  w-full
+  h-full
+  top-0
+  left-0
+  absolute
+  z-10
+  p-2
+  text-white
+  flex
+  justify-center
+  items-center
+  duration-300
 `;
 
 export default MovieCard;
