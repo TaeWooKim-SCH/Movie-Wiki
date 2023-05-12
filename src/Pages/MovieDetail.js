@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom';
 import tw from 'tailwind-styled-components';
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
+import useFetchMovie from '../Hooks/use-fetchMovie';
 import MovieInfo from '../Components/MovieInfo';
 import MovieOverViewVideo from '../Components/MovieOverViewVideo';
-import useFetchMovie from '../Hooks/use-fetchMovie';
-import API_KEY from '../key';
+import {
+  creditFetchedData,
+  movieDetailFetchedData,
+  videoFetchedData,
+} from '../API/movie';
+import { API_KEY } from '../Assets/ConstantValue';
 
 const ModalDiv = tw.div`
   w-4/5 h-4/5 relative rounded-md overflow-hidden
@@ -29,10 +34,10 @@ absolute top-5 right-5
 `;
 
 // 모달 닫기 버튼 및  backdrop 클릭 시 닫히는 것 movieCard 추가 후 구현 + 별점 svg + 모달 열려있을 때 scroll 금지
-function ModalOverlay({ movieId = 447365 }) {
+function ModalOverlay({ movieId = 16859 }) {
   const [movieData, setMovieData] = useState(null);
-  const [backdropurl, setBackdropurl] = useState('');
-  const [posterurl, setPosterurl] = useState('');
+  const [backdropURL, setbackdropURL] = useState('');
+  const [postURL, setpostURL] = useState('');
   const [videoData, setVideoData] = useState(null);
   const [creditData, setCreditData] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -42,26 +47,17 @@ function ModalOverlay({ movieId = 447365 }) {
   const { fetchData: fetchCreditData } = useFetchMovie();
 
   useEffect(() => {
-    fetchMovieData(
-      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=ko`,
-      data => {
-        setMovieData(data);
-        setBackdropurl(`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`);
-        setPosterurl(`https://image.tmdb.org/t/p/w500${data.poster_path}`);
-      },
-    );
-    fetchVideoData(
-      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}&language=ko`,
-      data => {
-        setVideoData(data);
-      },
-    );
-    fetchCreditData(
-      `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=ko`,
-      data => {
-        setCreditData(data);
-      },
-    );
+    fetchMovieData(movieDetailFetchedData(movieId, API_KEY), data => {
+      setMovieData(data);
+      setbackdropURL(`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`);
+      setpostURL(`https://image.tmdb.org/t/p/w500${data.poster_path}`);
+    });
+    fetchVideoData(videoFetchedData(movieId, API_KEY), data => {
+      setVideoData(data);
+    });
+    fetchCreditData(creditFetchedData(movieId, API_KEY), data => {
+      setCreditData(data);
+    });
   }, []);
 
   useEffect(() => {
@@ -74,7 +70,7 @@ function ModalOverlay({ movieId = 447365 }) {
       {isFetching && <p>...Loading</p>}
       {!isFetching && (
         <Main
-          backdrop={backdropurl}
+          backdrop={backdropURL}
           className="w-full h-full rounded-md text-black bg-no-repeat 
           bg-cover bg-gradient-to-r from-cyan-500 to-blue-500"
         >
@@ -84,7 +80,7 @@ function ModalOverlay({ movieId = 447365 }) {
             </Button>
             <MovieInfo movieData={movieData} creditData={creditData} />
             <MovieOverViewVideo
-              posterurl={posterurl}
+              postURL={postURL}
               movieData={movieData}
               videoData={videoData}
             />

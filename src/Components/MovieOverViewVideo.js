@@ -14,7 +14,7 @@ const MovieGenres = styled.li`
   margin-right: 10px;
 `;
 
-function MovieOverViewVideo({ posterurl, movieData, videoData }) {
+function MovieOverViewVideo({ postURL, movieData, videoData }) {
   const [videoPath, setVideoPath] = useState(null);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function MovieOverViewVideo({ posterurl, movieData, videoData }) {
     <>
       <div className="border-[0.3px] border-slate-600 my-10" />
       <div className="flex gap-5 text-white ">
-        <MoviePoster src={posterurl} alt="moviePoster" />
+        <MoviePoster src={postURL} alt="moviePoster" />
         <div className="flex justify-between w-full">
           <div className="flex flex-col w-1/2 h-full justify-between">
             <p className="break-keep">{movieData.overview}</p>

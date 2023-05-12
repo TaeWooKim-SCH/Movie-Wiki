@@ -8,19 +8,19 @@ const BoldP = tw.p`
 `;
 
 function MovieInfo({ movieData, creditData }) {
-  const [isBookmark, setIsBookmart] = useState(false);
+  const [isBookmarkChecked, setIsBookmarkChecked] = useState(false);
   const cast = creditData.cast.slice(0, 5).map(el => el.name);
   const releaseYear = movieData.release_date.split('-')[0];
   const starPoint = Number(movieData.vote_average).toFixed(1);
 
   const HandlerBookmark = () => {
-    setIsBookmart(!isBookmark);
+    setIsBookmarkChecked(!isBookmarkChecked);
   };
 
   return (
     <>
       <h1 className="text-7xl text-white mb-3">{movieData.original_title}</h1>
-      {isBookmark ? (
+      {isBookmarkChecked ? (
         <BsFillBookmarkPlusFill
           className="my-2"
           size={30}
