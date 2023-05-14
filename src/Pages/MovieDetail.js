@@ -33,7 +33,7 @@ const Button = tw.button`
 absolute top-5 right-5 
 `;
 
-// 모달 닫기 버튼 및  backdrop 클릭 시 닫히는 것 movieCard 추가 후 구현 + 별점 svg + 모달 열려있을 때 scroll 금지
+// TODO 모달 열려있을 때 scroll 금지 / 모달 닫기 버튼 및  backdrop 클릭 시 닫히는 것 movieCard 추가 후 구현
 function ModalOverlay({ movieId = 16859 }) {
   const [movieData, setMovieData] = useState(null);
   const [backdropURL, setbackdropURL] = useState('');

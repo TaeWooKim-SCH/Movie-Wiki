@@ -36,9 +36,10 @@ function MovieCard({ movie }) {
     <Card
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={() =>
-        console.log('클릭 시, 상세페이지 출력 이벤트 핸들러 동작할 예정')
-      }
+      onClick={() => {
+        console.log(movie);
+        console.log('클릭 시, 상세페이지 출력 이벤트 핸들러 동작할 예정');
+      }}
     >
       <div className="h-52 relative">
         <CardPoster
