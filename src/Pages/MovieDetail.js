@@ -26,7 +26,7 @@ w-full h-full absolute top-0 left-0 bg-black/45 rounded-md p-[55px] pt-[90px]
 `;
 
 const BackdropDiv = tw.div`
-flex justify-center items-center w-full h-screen bg-black/728
+absolute top-0 left-0 flex justify-center items-center w-full h-screen bg-black/728 z-10
 `;
 
 const Button = tw.button`
