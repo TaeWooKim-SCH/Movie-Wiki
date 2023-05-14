@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import tw from 'tailwind-styled-components';
 import { IoStarSharp } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
 import { TEXT_LENGTH_LIMIT, STORY_LENGTH_LIMIT } from '../Assets/ConstantValue';
+import { movieIdActions } from '../Store/movieId-slice';
 
 function MovieCard({ movie }) {
+  const dispatch = useDispatch();
   const [isMouseOn, setIsMouseOn] = useState(false);
   const { title, overview } = movie;
   const moviePoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
@@ -36,9 +39,9 @@ function MovieCard({ movie }) {
     <Card
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={() =>
-        console.log('클릭 시, 상세페이지 출력 이벤트 핸들러 동작할 예정')
-      }
+      onClick={() => {
+        dispatch(movieIdActions.openModal(movie.id));
+      }}
     >
       <div className="h-52 relative">
         <CardPoster
