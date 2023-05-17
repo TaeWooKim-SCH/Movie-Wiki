@@ -18,7 +18,7 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
   return (
     <>
       <div className="my-10 border-[0.3px] border-slate-600" />
-      <div className="flex gap-5 text-white ">
+      <div className="flex h-fit w-fit gap-5 text-white ">
         <MoviePoster src={postURL} alt="moviePoster" />
         <div className="flex w-full justify-between">
           <OverviewDiv>

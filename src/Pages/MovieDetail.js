@@ -120,7 +120,7 @@ const Main = styled.main`
 `;
 
 const ShadowDiv = tw.div`
-w-full h-full absolute top-0 left-0 bg-black/45 rounded-md p-[3.4rem] pt-[5.6rem]
+w-full h-full absolute top-0 left-0 bg-black/45 rounded-md p-[3.4rem] 
 `;
 
 const BackdropDiv = tw.div`
