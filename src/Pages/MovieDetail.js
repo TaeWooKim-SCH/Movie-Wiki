@@ -80,8 +80,8 @@ function ModalOverlay() {
       {!isFetching && (
         <Main
           backdrop={backdropURL}
-          className="w-full h-full rounded-md text-black bg-no-repeat 
-          bg-cover bg-gradient-to-r from-cyan-500 to-blue-500"
+          className="h-full w-full rounded-md bg-gradient-to-r from-cyan-500 
+          to-blue-500 bg-cover bg-no-repeat text-black"
         >
           <ShadowDiv>
             <Button

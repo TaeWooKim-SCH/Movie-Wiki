@@ -43,7 +43,7 @@ function MovieCard({ movie }) {
         dispatch(movieIdActions.openModal(movie.id));
       }}
     >
-      <div className="h-52 relative">
+      <div className="relative h-52">
         <CardPoster
           className={`${cardPosterClassName}`}
           src={moviePoster}
@@ -54,14 +54,14 @@ function MovieCard({ movie }) {
           {textLengthOverCut(overview, STORY_LENGTH_LIMIT)}
         </CardStory>
       </div>
-      <div className="h-12 flex flex-col bg-transparent">
+      <div className="flex h-12 flex-col bg-transparent">
         <div className="text-white">
           {textLengthOverCut(title, TEXT_LENGTH_LIMIT)}
         </div>
         <div className="flex justify-between text-sm">
           <div className="text-white">{date}</div>
-          <div className="text-red-500 mr-2 flex">
-            <IoStarSharp className="mt-1 mr-1" />
+          <div className="mr-2 flex text-red-500">
+            <IoStarSharp className="mr-1 mt-1" />
             {starPoint}
           </div>
         </div>

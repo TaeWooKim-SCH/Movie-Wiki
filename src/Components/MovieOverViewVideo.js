@@ -29,11 +29,11 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
 
   return (
     <>
-      <div className="border-[0.3px] border-slate-600 my-10" />
+      <div className="my-10 border-[0.3px] border-slate-600" />
       <div className="flex gap-5 text-white ">
         <MoviePoster src={postURL} alt="moviePoster" />
-        <div className="flex justify-between w-full">
-          <div className="flex flex-col w-1/2 h-full justify-between">
+        <div className="flex w-full justify-between">
+          <div className="flex h-full w-1/2 flex-col justify-between">
             <p className="break-keep">{movieData.overview}</p>
             <ul>
               {movieData.genres.map(genre => {
