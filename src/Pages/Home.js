@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import MovieCard from '../Components/MovieCard';
+import React, { useEffect, useState } from 'react';
 import movieData from '../API/movie';
-// import Navbar from '../Components/Navbar';
+import { API_KEY } from '../Assets/ConstantValue';
+import MovieCard from '../Components/MovieCard';
 
 export default function Home() {
   const [data, setData] = useState('');
 
   useEffect(() => {
-    movieData(process.env.REACT_APP_TMDB_API_KEY)
+    movieData(API_KEY)
       .then(res => res.json())
-      .then(res => setData(res.results[0]));
+      .then(res => setData(res.results[2]));
   }, []);
 
   return (
-    <section id="home" className="ml-56 bg-backgroundNormal">
-      <h1>Home</h1>
-      <h2>Home</h2>
+    <section id="home" className="ml-56">
       {data && <MovieCard movie={data} />}
     </section>
   );

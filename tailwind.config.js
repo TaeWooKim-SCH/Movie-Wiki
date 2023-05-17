@@ -3,6 +3,10 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      opacity: {
+        728: '.728',
+        45: '.45',
+      },
       brightness: {
         40: '.40',
       },

@@ -22,7 +22,7 @@ export default function Navbar() {
             size="70"
             className="rounded-full border-4 border-white"
           />
-          <div className="w-full flex justify-evenly">
+          <div className="flex w-full justify-evenly">
             <AiOutlineHeart size="40" />
             <AiOutlineBell size="40" />
           </div>
@@ -34,9 +34,9 @@ export default function Navbar() {
               isActive ? 'text-blueWhite' : 'text-white'
             }
           >
-            <div className="flex ml-7 items-center">
+            <div className="ml-7 flex items-center">
               <AiOutlineHome size="50" />
-              <span className="text-3xl mx-2">Home</span>
+              <span className="mx-2 text-3xl">Home</span>
             </div>
           </NavLink>
           <NavLink
@@ -45,9 +45,9 @@ export default function Navbar() {
               isActive ? 'text-blueWhite' : 'text-white'
             }
           >
-            <div className="flex ml-7 items-center">
+            <div className="ml-7 flex items-center">
               <AiOutlineSearch size="50" />
-              <span className="text-3xl mx-2">Search</span>
+              <span className="mx-2 text-3xl">Search</span>
             </div>
           </NavLink>
           <NavLink
@@ -56,9 +56,9 @@ export default function Navbar() {
               isActive ? 'text-blueWhite' : 'text-white'
             }
           >
-            <div className="flex ml-7 items-center">
+            <div className="ml-7 flex items-center">
               <AiOutlineAppstore size="50" />
-              <span className="text-3xl mx-2">Category</span>
+              <span className="mx-2 text-3xl">Category</span>
             </div>
           </NavLink>
         </NavMenu>
@@ -94,6 +94,7 @@ const Nav = tw.nav`
   fixed 
   top-0 
   left-0
+  z-[5]
 `;
 
 const Profile = tw.div`

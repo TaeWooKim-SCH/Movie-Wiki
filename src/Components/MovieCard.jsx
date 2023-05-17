@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import tw from 'tailwind-styled-components';
 import { IoStarSharp } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
 import { TEXT_LENGTH_LIMIT, STORY_LENGTH_LIMIT } from '../Assets/ConstantValue';
+import { movieIdActions } from '../Store/movieId-slice';
+import useScrollLock from '../Hooks/use-scrollLock';
 
 function MovieCard({ movie }) {
+  const dispatch = useDispatch();
   const [isMouseOn, setIsMouseOn] = useState(false);
+  const { lockScroll } = useScrollLock();
   const { title, overview } = movie;
   const moviePoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
   const date = movie.release_date.slice(0, 4);
@@ -36,11 +41,12 @@ function MovieCard({ movie }) {
     <Card
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={() =>
-        console.log('클릭 시, 상세페이지 출력 이벤트 핸들러 동작할 예정')
-      }
+      onClick={() => {
+        lockScroll();
+        dispatch(movieIdActions.openModal(movie.id));
+      }}
     >
-      <div className="h-52 relative">
+      <div className="relative h-52">
         <CardPoster
           className={`${cardPosterClassName}`}
           src={moviePoster}
@@ -51,14 +57,14 @@ function MovieCard({ movie }) {
           {textLengthOverCut(overview, STORY_LENGTH_LIMIT)}
         </CardStory>
       </div>
-      <div className="h-12 flex flex-col bg-transparent">
+      <div className="flex h-12 flex-col bg-transparent">
         <div className="text-white">
           {textLengthOverCut(title, TEXT_LENGTH_LIMIT)}
         </div>
         <div className="flex justify-between text-sm">
           <div className="text-white">{date}</div>
-          <div className="text-red-500 mr-2 flex">
-            <IoStarSharp className="mt-1 mr-1" />
+          <div className="mr-2 flex text-red-500">
+            <IoStarSharp className="mr-1 mt-1" />
             {starPoint}
           </div>
         </div>
