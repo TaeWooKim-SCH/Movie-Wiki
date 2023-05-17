@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import tw from 'tailwind-styled-components';
 
 import {
   AiOutlineUser,
@@ -14,9 +15,9 @@ import { SiNotion } from 'react-icons/si';
 
 export default function Navbar() {
   return (
-    <nav className="fixed flex h-full w-56 flex-col justify-between bg-[#141414] text-white">
+    <Nav>
       <div className="nav-top w-full">
-        <div className="nav-profile flex h-48 w-full flex-col items-center justify-evenly">
+        <Profile>
           <AiOutlineUser
             size="70"
             className="rounded-full border-4 border-white"
@@ -25,8 +26,8 @@ export default function Navbar() {
             <AiOutlineHeart size="40" />
             <AiOutlineBell size="40" />
           </div>
-        </div>
-        <div className="nav-menu my-5 flex h-60 w-full flex-col justify-between">
+        </Profile>
+        <NavMenu>
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -60,9 +61,9 @@ export default function Navbar() {
               <span className="mx-2 text-3xl">Category</span>
             </div>
           </NavLink>
-        </div>
+        </NavMenu>
       </div>
-      <div className="nav-bottom flex h-20 w-full items-center justify-evenly">
+      <NavBottom>
         <a
           href="https://boiled-november-915.notion.site/5c611de12858456da96816d36c9aa8b7"
           target="_blank"
@@ -77,7 +78,48 @@ export default function Navbar() {
         >
           <AiOutlineGithub size="50" />
         </a>
-      </div>
-    </nav>
+      </NavBottom>
+    </Nav>
   );
 }
+
+const Nav = tw.nav`
+  flex
+  flex-col
+  justify-between
+  bg-[#141414]
+  text-white
+  w-56 
+  h-full 
+  fixed 
+  top-0 
+  left-0
+  z-[5]
+`;
+
+const Profile = tw.div`
+  nav-profile 
+  w-full 
+  h-48 flex 
+  flex-col 
+  justify-evenly 
+  items-center
+`;
+
+const NavMenu = tw.div`
+  nav-menu 
+  w-full 
+  h-60 my-5 
+  flex 
+  flex-col 
+  justify-between
+`;
+
+const NavBottom = tw.div`
+  nav-bottom 
+  w-full 
+  h-20 
+  flex 
+  justify-evenly 
+  items-center
+`;

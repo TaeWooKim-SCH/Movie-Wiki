@@ -17,6 +17,10 @@ module.exports = {
         backgroundNormal: '#141414',
         blueWhite: '#7AA7FF',
       },
+      spacing: {
+        1216: '1216px',
+        400: '400px',
+      },
     },
   },
   plugins: [
