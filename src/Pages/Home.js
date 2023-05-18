@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+import React, { useEffect, useState } from 'react';
+import { API_KEY } from '../Assets/ConstantValue';
+>>>>>>> 8be02d8 (initial)
 import RecommendList from '../Components/home/RecommendList';
 
 export default function Home() {
