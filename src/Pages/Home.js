@@ -14,7 +14,12 @@ export default function Home() {
 
   return (
     <section id="home" className="ml-56">
-      {data && <MovieCard movie={data} />}
+      <header>엄청나게 큰 이미지가 들어갈거임</header>
+      <div>
+        <p>인기 영화</p>
+        <div>scroll 가능한 movie Card 5개 리스트</div>
+      </div>
+      {/* {data && <MovieCard movie={data} />} */}
     </section>
   );
 }

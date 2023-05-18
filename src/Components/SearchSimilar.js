@@ -59,7 +59,7 @@ export default function SearchSimilar({
 
   return (
     <section>
-      <div className="text-white font-bold text-2xl">
+      <div className="text-2xl font-bold text-white">
         이런 영화는 어떠신가요?
       </div>
       <section className="flex flex-wrap justify-center">
@@ -67,7 +67,7 @@ export default function SearchSimilar({
       </section>
       <div ref={targetRef} />
       {isLoading && (
-        <div className="text-white h-50 font-bold text-2xl text-center">
+        <div className="h-50 text-center text-2xl font-bold text-white">
           로딩중...
         </div>
       )}
