@@ -1,36 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import tw from 'tailwind-styled-components';
-import movieData from '../../API/movie';
-import { API_KEY } from '../../Assets/ConstantValue';
-import MovieCard from '../MovieCard';
+import React from 'react';
+import RecommendMovieLi from './RecommendMovieLi';
 import RecommendTitle from './RecommendTitle';
 
 function RecommendList() {
-  const category = ['TOP 10', '주간', '월간', '최신', '한국'];
-
-  const [data, setData] = useState('');
-
-  useEffect(() => {
-    movieData(API_KEY)
-      .then(res => res.json())
-      .then(res => setData(res.results[2]));
-  }, []);
+  const category = ['TOP 10', '주간', '일간', '상영 중인', '한국'];
 
   return (
     <>
-      {category.map(title => (
+      {category.map((title, idx) => (
         <>
           <RecommendTitle key={title} category={title} />
-          <div className="flex w-fit">
-            {data && <MovieCard movie={data} />}
-            {data && <MovieCard movie={data} />}
-            {data && <MovieCard movie={data} />}
-            {data && <MovieCard movie={data} />}
-            {data && <MovieCard movie={data} />}
-            {data && <MovieCard movie={data} />}
-            {data && <MovieCard movie={data} />}
-            {data && <MovieCard movie={data} />}
-          </div>
+          <RecommendMovieLi category={category[idx]} />
         </>
       ))}
     </>
