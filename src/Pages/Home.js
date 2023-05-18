@@ -7,7 +7,7 @@ export default function Home() {
       <header className="w-full bg-purple-300">
         엄청나게 큰 이미지가 들어갈거임
       </header>
-      <div>
+      <div className="pl-5">
         <RecommendList />
       </div>
     </section>

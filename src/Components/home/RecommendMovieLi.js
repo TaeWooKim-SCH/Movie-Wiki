@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import tw from 'tailwind-styled-components';
-import { CATEGORY } from '../../Assets/ConstantValue';
+import { CATEGORY, MOVIE_LENGTH_LIMIT } from '../../Assets/ConstantValue';
 import MovieCard from '../MovieCard';
 
 function RecommendMovieLi({ category }) {
@@ -10,7 +9,7 @@ function RecommendMovieLi({ category }) {
   const fetch = async () => {
     const data = await CATEGORY[category].func;
     const response = await data.json();
-    setDatas(response.results.slice(0, 10));
+    setDatas(response.results.slice(0, MOVIE_LENGTH_LIMIT));
   };
   useEffect(() => {
     fetch();

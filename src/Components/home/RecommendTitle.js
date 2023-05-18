@@ -6,7 +6,7 @@ function RecommendTitle({ category }) {
   return (
     <div className="flex">
       <RecommendColorP className="mr-2">{category}</RecommendColorP>
-      <RecommendP>{CATEGORY[category].title}</RecommendP>
+      <RecommendP className="mr-2">{CATEGORY[category].title}</RecommendP>
       <RecommendP>영화</RecommendP>
     </div>
   );
