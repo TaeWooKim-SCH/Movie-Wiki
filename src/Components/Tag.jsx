@@ -10,9 +10,9 @@ function Tag({ genre, clickTag, setClickTag }) {
   useEffect(() => {
     if (isToggle) {
       setClickTag([...clickTag, genre]);
-    } else {
-      setClickTag([...clickTag.filter(e => e.name !== genre.name)]);
+      return;
     }
+    setClickTag([...clickTag.filter(e => e.name !== genre.name)]);
   }, [isToggle]);
 
   return (

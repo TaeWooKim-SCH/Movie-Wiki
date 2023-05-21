@@ -1,3 +1,5 @@
+export const STAR_POINT_INITIAL_NUMBER = 0.0;
+export const YEAR_LENGTH_LIMIT = 4;
 export const TEXT_LENGTH_LIMIT = 12;
 export const STORY_LENGTH_LIMIT = 80;
 export const GENRE_LIST = [

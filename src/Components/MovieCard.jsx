@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import tw from 'tailwind-styled-components';
 import { IoStarSharp } from 'react-icons/io5';
-import { TEXT_LENGTH_LIMIT, STORY_LENGTH_LIMIT } from '../Assets/ConstantValue';
+import {
+  TEXT_LENGTH_LIMIT,
+  STORY_LENGTH_LIMIT,
+  YEAR_LENGTH_LIMIT,
+  STAR_POINT_INITIAL_NUMBER,
+} from '../Assets/ConstantValue';
 
 function MovieCard({ movie }) {
   const [isMouseOn, setIsMouseOn] = useState(false);
   const { title, overview } = movie;
   const moviePoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-  const date = movie.release_date ? movie.release_date.slice(0, 4) : 'xxxx';
-  const starPoint = movie.vote_average;
+  const date = movie.release_date
+    ? movie.release_date.slice(0, YEAR_LENGTH_LIMIT)
+    : 'xxxx';
+  const starPoint = movie.vote_average
+    ? movie.vote_average.toFixed(1)
+    : STAR_POINT_INITIAL_NUMBER;
   const cardPosterClassName = isMouseOn && 'scale-105 brightness-40';
 
   const textLengthOverCut = (text, len) => {
