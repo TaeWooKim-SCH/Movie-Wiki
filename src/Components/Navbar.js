@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import tw from 'tailwind-styled-components';
 
 import {
   AiOutlineUser,
@@ -14,7 +15,7 @@ import { SiNotion } from 'react-icons/si';
 
 export default function Navbar() {
   return (
-    <nav className="flex flex-col justify-between bg-[#141414] text-white w-56 h-full fixed top-0 left-0">
+    <Nav>
       <div className="nav-top w-full">
         <div className="nav-profile w-full h-48 flex flex-col justify-evenly items-center">
           <AiOutlineUser
@@ -78,6 +79,20 @@ export default function Navbar() {
           <AiOutlineGithub size="50" />
         </a>
       </div>
-    </nav>
+    </Nav>
   );
 }
+
+const Nav = tw.nav`
+  flex
+  flex-col
+  justify-between
+  bg-[#141414]
+  text-white
+  w-56 
+  h-full 
+  fixed 
+  top-0 
+  left-0
+  z-[5]
+`;

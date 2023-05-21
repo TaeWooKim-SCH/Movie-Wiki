@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import tw from 'tailwind-styled-components';
 import { API_KEY, GENRE_LIST } from '../Assets/ConstantValue';
 import Tag from '../Components/Tag';
 import { movieGenreData } from '../API/movie';
@@ -6,7 +7,7 @@ import MovieCard from '../Components/MovieCard';
 import useFetchMovie from '../Hooks/use-fetchMovie';
 import useIntersectionObserver from '../Hooks/useIntersectionObserver';
 
-export default function Category() {
+function Category() {
   const [genreList, setGenreList] = useState([]);
   const [tagList, setTagList] = useState('');
   const [clickTag, setClickTag] = useState([]);
@@ -95,7 +96,7 @@ export default function Category() {
   return (
     <section id="category" className="ml-56">
       <div className="m-5">
-        <div className="flex flex-wrap justify-start border py-5 px-10 border-white rounded-3xl">
+        <TagContainer>
           {GENRE_LIST.map(e => (
             <Tag
               genre={e}
@@ -104,9 +105,9 @@ export default function Category() {
               key={e.id}
             />
           ))}
-        </div>
+        </TagContainer>
       </div>
-      <div className="text-white text-3xl font-bold mt-10">
+      <div className="mt-10 text-3xl font-bold text-white">
         {tagList || '태그를 클릭해주세요.'}
       </div>
       <div className="flex flex-wrap">
@@ -114,14 +115,31 @@ export default function Category() {
       </div>
       <div id="nextPage" ref={target} />
       {isLoading && (
-        <div
-          className={`flex justify-center text-3xl font-bold h-52 items-center text-white ${
-            end && 'hidden'
-          }`}
-        >
-          로딩중...
-        </div>
+        <Loading className={`${end && 'hidden'}`}>로딩중...</Loading>
       )}
     </section>
   );
 }
+
+const TagContainer = tw.div`
+  flex
+  flex-wrap
+  justify-start
+  border
+  border-white
+  py-5
+  px-10
+  rounded-3xl
+`;
+
+const Loading = tw.div`
+  flex
+  h-52
+  items-center
+  justify-center
+  text-3xl
+  font-bold
+  text-white
+`;
+
+export default Category;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import tw from 'tailwind-styled-components';
 
 function Tag({ genre, clickTag, setClickTag }) {
   const [isToggle, setIsToggle] = useState(false);
@@ -16,18 +17,31 @@ function Tag({ genre, clickTag, setClickTag }) {
   }, [isToggle]);
 
   return (
-    <div
+    <StyledTag
       role="checkbox"
-      className={`text-sm w-20 border-black border-2 py-1 flex justify-center m-2 rounded-2xl border-white text-white select-none ${
-        isToggle ? 'bg-blueWhite border-blueWhite' : ''
-      }`}
+      className={`${isToggle ? 'border-blueWhite bg-blueWhite' : ''}`}
       onClick={handleTagToggle}
       onKeyPress={() => {}}
       tabIndex={0}
     >
       {genre.name}
-    </div>
+    </StyledTag>
   );
 }
+
+const StyledTag = tw.div`
+  m-2
+  flex
+  w-20
+  justify-center
+  rounded-2xl
+  border-2
+  border-black
+  border-white
+  py-1
+  text-sm
+  text-white
+  select-none
+`;
 
 export default Tag;

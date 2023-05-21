@@ -49,7 +49,7 @@ function MovieCard({ movie }) {
         console.log('클릭 시, 상세페이지 출력 이벤트 핸들러 동작할 예정')
       }
     >
-      <div className="h-52 relative">
+      <div className="relative h-52">
         <CardPoster
           className={`${cardPosterClassName}`}
           src={moviePoster}
@@ -60,14 +60,14 @@ function MovieCard({ movie }) {
           {textLengthOverCut(overview, STORY_LENGTH_LIMIT)}
         </CardStory>
       </div>
-      <div className="h-12 flex flex-col bg-transparent">
+      <div className="flex h-12 flex-col bg-transparent">
         <div className="text-white">
           {textLengthOverCut(title, TEXT_LENGTH_LIMIT)}
         </div>
         <div className="flex justify-between text-sm">
           <div className="text-white">{date}</div>
-          <div className="text-red-500 mr-2 flex">
-            <IoStarSharp className="mt-1 mr-1" />
+          <div className="mr-2 flex text-red-500">
+            <IoStarSharp className="mr-1 mt-1" />
             {starPoint}
           </div>
         </div>
@@ -77,37 +77,37 @@ function MovieCard({ movie }) {
 }
 
 const Card = tw.article`
-  flex
-  flex-col
-  w-44
-  h-64
   m-5
+  flex
+  h-64
+  w-44
   cursor-pointer
+  flex-col
   text-base
 `;
 
 const CardPoster = tw.img`
-  top-0
-  left-0
-  w-full
-  h-full
   absolute
+  left-0
+  top-0
+  h-full
+  w-full
   duration-300
   backface-hidden
 `;
 
 const CardStory = tw.div`
-  w-full
-  h-full
-  top-0
-  left-0
   absolute
+  left-0
+  top-0
   z-10
+  flex
+  h-full
+  w-full
+  items-center
+  justify-center
   p-2
   text-white
-  flex
-  justify-center
-  items-center
   duration-300
 `;
 
