@@ -17,6 +17,9 @@ module.exports = {
         backgroundNormal: '#141414',
         blueWhite: '#7AA7FF',
       },
+      borderWidth: {
+        DEFAULT: '1px',
+      },
     },
   },
   plugins: [

@@ -14,7 +14,7 @@ import { SiNotion } from 'react-icons/si';
 
 export default function Navbar() {
   return (
-    <nav className="flex flex-col justify-between bg-[#141414] text-white w-56 h-full fixed">
+    <nav className="flex flex-col justify-between bg-[#141414] text-white w-56 h-full fixed top-0 left-0">
       <div className="nav-top w-full">
         <div className="nav-profile w-full h-48 flex flex-col justify-evenly items-center">
           <AiOutlineUser

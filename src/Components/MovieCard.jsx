@@ -7,7 +7,7 @@ function MovieCard({ movie }) {
   const [isMouseOn, setIsMouseOn] = useState(false);
   const { title, overview } = movie;
   const moviePoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-  const date = movie.release_date.slice(0, 4);
+  const date = movie.release_date ? movie.release_date.slice(0, 4) : 'xxxx';
   const starPoint = movie.vote_average;
   const cardPosterClassName = isMouseOn && 'scale-105 brightness-40';
 
