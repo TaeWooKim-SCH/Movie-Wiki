@@ -17,26 +17,26 @@ export default function Navbar() {
   return (
     <Nav>
       <div className="nav-top w-full">
-        <div className="nav-profile w-full h-48 flex flex-col justify-evenly items-center">
+        <Profile>
           <AiOutlineUser
             size="70"
             className="rounded-full border-4 border-white"
           />
-          <div className="w-full flex justify-evenly">
+          <div className="flex w-full justify-evenly">
             <AiOutlineHeart size="40" />
             <AiOutlineBell size="40" />
           </div>
-        </div>
-        <div className="nav-menu w-full h-60 my-5 flex flex-col justify-between">
+        </Profile>
+        <NavMenu>
           <NavLink
             to="/"
             className={({ isActive }) =>
               isActive ? 'text-blueWhite' : 'text-white'
             }
           >
-            <div className="flex ml-7 items-center">
+            <div className="ml-7 flex items-center">
               <AiOutlineHome size="50" />
-              <span className="text-3xl mx-2">Home</span>
+              <span className="mx-2 text-3xl">Home</span>
             </div>
           </NavLink>
           <NavLink
@@ -45,9 +45,9 @@ export default function Navbar() {
               isActive ? 'text-blueWhite' : 'text-white'
             }
           >
-            <div className="flex ml-7 items-center">
+            <div className="ml-7 flex items-center">
               <AiOutlineSearch size="50" />
-              <span className="text-3xl mx-2">Search</span>
+              <span className="mx-2 text-3xl">Search</span>
             </div>
           </NavLink>
           <NavLink
@@ -56,14 +56,14 @@ export default function Navbar() {
               isActive ? 'text-blueWhite' : 'text-white'
             }
           >
-            <div className="flex ml-7 items-center">
+            <div className="ml-7 flex items-center">
               <AiOutlineAppstore size="50" />
-              <span className="text-3xl mx-2">Category</span>
+              <span className="mx-2 text-3xl">Category</span>
             </div>
           </NavLink>
-        </div>
+        </NavMenu>
       </div>
-      <div className="nav-bottom w-full h-20 flex justify-evenly items-center">
+      <NavBottom>
         <a
           href="https://boiled-november-915.notion.site/5c611de12858456da96816d36c9aa8b7"
           target="_blank"
@@ -78,7 +78,7 @@ export default function Navbar() {
         >
           <AiOutlineGithub size="50" />
         </a>
-      </div>
+      </NavBottom>
     </Nav>
   );
 }
@@ -95,4 +95,31 @@ const Nav = tw.nav`
   top-0 
   left-0
   z-[5]
+`;
+
+const Profile = tw.div`
+  nav-profile 
+  w-full 
+  h-48 flex 
+  flex-col 
+  justify-evenly 
+  items-center
+`;
+
+const NavMenu = tw.div`
+  nav-menu 
+  w-full 
+  h-60 my-5 
+  flex 
+  flex-col 
+  justify-between
+`;
+
+const NavBottom = tw.div`
+  nav-bottom 
+  w-full 
+  h-20 
+  flex 
+  justify-evenly 
+  items-center
 `;

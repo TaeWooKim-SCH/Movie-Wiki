@@ -1,11 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Navbar from './Components/Navbar';
 import Home from './Pages/Home';
 import Search from './Pages/Search';
 import Category from './Pages/Category';
+import MovieDetail from './Pages/MovieDetail';
 
 function App() {
+  const id = useSelector(state => state.ID.id);
   return (
     <div>
       <BrowserRouter>
@@ -16,6 +19,7 @@ function App() {
           <Route path="/category" element={<Category />} />
         </Routes>
       </BrowserRouter>
+      {id && <MovieDetail />}
     </div>
   );
 }
