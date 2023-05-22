@@ -10,7 +10,7 @@ import MovieDetail from './Pages/MovieDetail';
 function App() {
   const id = useSelector(state => state.ID.id);
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         <Navbar />
         <Routes>

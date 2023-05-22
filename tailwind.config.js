@@ -17,21 +17,24 @@ module.exports = {
         backgroundNormal: '#141414',
         blueWhite: '#7AA7FF',
       },
-      spacing: {
-        1216: '1216px',
-        400: '400px',
+      borderWidth: {
+        DEFAULT: '1px',
+        spacing: {
+          1216: '1216px',
+          400: '400px',
+        },
       },
     },
-  },
-  plugins: [
-    ({ addUtilities }) => {
-      const newUtilities = {
-        '.backface-hidden': {
-          backfaceVisibility: 'hidden',
-        },
-      };
+    plugins: [
+      ({ addUtilities }) => {
+        const newUtilities = {
+          '.backface-hidden': {
+            backfaceVisibility: 'hidden',
+          },
+        };
 
-      addUtilities(newUtilities, ['responsive']);
-    },
-  ],
-};
+        addUtilities(newUtilities, ['responsive']);
+      },
+    ],
+  }
+}
