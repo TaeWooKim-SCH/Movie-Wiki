@@ -64,7 +64,7 @@ function RecommendMovieLi({ category }) {
   return (
     <div>
       <div
-        className="flex overflow-x-scroll overscroll-x-none"
+        className="flex overflow-x-scroll scrollbar-hide"
         ref={scrollRef}
         onMouseDown={onDragStart}
         onMouseMove={isDrag ? onThrottleDragMove : null}

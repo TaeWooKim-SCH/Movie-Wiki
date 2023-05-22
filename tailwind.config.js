@@ -24,13 +24,14 @@ module.exports = {
     },
   },
   plugins: [
+    // eslint-disable-next-line global-require
+    require('tailwind-scrollbar-hide'),
     ({ addUtilities }) => {
       const newUtilities = {
         '.backface-hidden': {
           backfaceVisibility: 'hidden',
         },
       };
-
       addUtilities(newUtilities, ['responsive']);
     },
   ],
