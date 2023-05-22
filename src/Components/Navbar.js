@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import tw from 'tailwind-styled-components';
+import { NavLink } from 'react-router-dom';
 
 import {
   AiOutlineUser,

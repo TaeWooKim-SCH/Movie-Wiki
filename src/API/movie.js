@@ -41,19 +41,6 @@ export const dailypopularMovieData = API => {
 };
 
 // Todo 최신 영화 데이터가 3개정도 밖에 안되고 아래처럼 정보가 너무 없음 상영 영화로 일단 해놓음
-/**
- * 
- * homepage": "",
-  "id": 1128492,
-  "imdb_id": null,
-  "original_language": "cs",
-  "original_title": "Odyssea - Neumírající fenomén",
-  "overview": "",
-  "popularity": 0.0,
-  "poster_path": null,
-  "production_companies": [ 
- * 
- */
 export const nowPlayingMovieData = API => {
   return fetch(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${API}&language=ko`,
