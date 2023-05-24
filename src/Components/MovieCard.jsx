@@ -4,7 +4,7 @@ import { IoStarSharp } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import { TEXT_LENGTH_LIMIT, STORY_LENGTH_LIMIT } from '../Assets/ConstantValue';
 import { movieIdActions } from '../Store/movieId-slice';
-import useScrollLock from '../Hooks/use-scrollLock';
+import useScrollLock from '../Hooks/useScrollLock';
 
 function MovieCard({ movie }) {
   const dispatch = useDispatch();

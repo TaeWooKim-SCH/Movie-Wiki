@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
-import useFetchMovie from '../Hooks/use-fetchMovie';
+import useFetchMovie from '../Hooks/useFetchMovie';
 import MovieInfo from '../Components/movieDetail/MovieInfo';
 import MovieOverViewVideo from '../Components/movieDetail/MovieOverViewVideo';
 import {
@@ -14,7 +14,7 @@ import {
 } from '../API/movie';
 import { API_KEY } from '../Assets/ConstantValue';
 import { movieIdActions } from '../Store/movieId-slice';
-import useScrollLock from '../Hooks/use-scrollLock';
+import useScrollLock from '../Hooks/useScrollLock';
 
 function ModalOverlay() {
   const movieId = useSelector(state => state.ID.id);
