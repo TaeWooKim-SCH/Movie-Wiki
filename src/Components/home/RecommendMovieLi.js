@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import uuid from 'react-uuid';
 import tw from 'tailwind-styled-components';
 import { CATEGORY, MOVIE_LENGTH_LIMIT } from '../../Assets/ConstantValue';
 import MovieCard from '../MovieCard';
@@ -59,7 +58,7 @@ function RecommendMovieLi({ category }) {
 
   // Todo 스크롤 끝나고 모달 켜지는거 막아야함
   return (
-    <ScrollUL
+    <ScrollDiv
       ref={scrollRef}
       onMouseDown={onDragStart}
       onMouseMove={isDrag ? onThrottleDragMove : null}
@@ -69,16 +68,16 @@ function RecommendMovieLi({ category }) {
     >
       {!!datas.length &&
         datas.map(data => (
-          <li key={uuid()}>
+          <li>
             <MovieCard movie={data} key={data.div} />
           </li>
         ))}
-    </ScrollUL>
+    </ScrollDiv>
   );
 }
 
-const ScrollUL = tw.ul`
-  relative flex overflow-x-scroll scrollbar-hide
+const ScrollDiv = tw.div`
+relative flex overflow-x-scroll scrollbar-hide
 `;
 
 export default RecommendMovieLi;
