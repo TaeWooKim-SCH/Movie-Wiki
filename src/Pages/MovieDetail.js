@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import tw from 'tailwind-styled-components';
+import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import useFetchMovie from '../Hooks/use-fetchMovie';
-import MovieInfo from '../Components/MovieInfo';
-import MovieOverViewVideo from '../Components/MovieOverViewVideo';
+import MovieInfo from '../Components/movieDetail/MovieInfo';
+import MovieOverViewVideo from '../Components/movieDetail/MovieOverViewVideo';
 import {
   creditFetchedData,
   movieDetailFetchedData,
@@ -16,7 +16,6 @@ import { API_KEY } from '../Assets/ConstantValue';
 import { movieIdActions } from '../Store/movieId-slice';
 import useScrollLock from '../Hooks/use-scrollLock';
 
-// TODO 모달 열려있을 때 scroll 금지 -> useCustom 훅 만들어서
 function ModalOverlay() {
   const movieId = useSelector(state => state.ID.id);
   const dispatch = useDispatch();
@@ -66,7 +65,7 @@ function ModalOverlay() {
         >
           <ShadowDiv>
             <button
-              className="absolute right-5 top-5  justify-end"
+              className="absolute right-5 top-5 justify-end"
               type="button"
               onClick={HandlerModalClose}
             >
@@ -110,7 +109,6 @@ function MovieDetail() {
   );
 }
 
-// Todo 제목이 긴 경우 아래 부분이 안보임 css수정해야함 px로 해놓은 친구들 rem으로 고치기
 const ModalDiv = tw.div`
   w-4/5 h-4/5 relative rounded-md overflow-hidden
 `;
@@ -124,7 +122,7 @@ w-full h-full absolute top-0 left-0 bg-black/45 rounded-md p-[3.4rem]
 `;
 
 const BackdropDiv = tw.div`
-fixed top-0 left-0 flex justify-center items-center w-full h-screen bg-black/728 z-10
+fixed top-0 left-0 flex justify-center items-center w-full h-screen bg-black/728 z-50
 `;
 
 export default MovieDetail;

@@ -25,16 +25,18 @@ module.exports = {
         },
       },
     },
-    plugins: [
-      ({ addUtilities }) => {
-        const newUtilities = {
-          '.backface-hidden': {
-            backfaceVisibility: 'hidden',
-          },
-        };
+  },
+  plugins: [
+    // eslint-disable-next-line global-require
+    require('tailwind-scrollbar-hide'),
+    ({ addUtilities }) => {
+      const newUtilities = {
+        '.backface-hidden': {
+          backfaceVisibility: 'hidden',
+        },
+      };
+      addUtilities(newUtilities, ['responsive']);
+    },
+  ],
+};
 
-        addUtilities(newUtilities, ['responsive']);
-      },
-    ],
-  }
-}

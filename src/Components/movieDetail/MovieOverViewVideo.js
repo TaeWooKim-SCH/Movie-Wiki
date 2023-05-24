@@ -54,7 +54,7 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
 }
 
 const MoviePoster = tw.img`
- w-1/5 border-[0.3px] border-slate-600
+w-1/5 border-[0.3px] border-slate-600
 `;
 
 const MovieGenres = styled.li`
