@@ -1,6 +1,12 @@
-const movieData = API => {
+export const movieData = API => {
   return fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${API}&language=ko-KR`,
+  );
+};
+
+export const movieGenreData = (API, genreID, Page) => {
+  return fetch(
+    `https://api.themoviedb.org/3/discover/movie?api_key=${API}&language=ko-KR&with_genres=${genreID}&page=${Page}`,
   );
 };
 
@@ -52,5 +58,3 @@ export const krMovieData = API => {
     `https://api.themoviedb.org/3/movie/popular?api_key=${API}&region=KR&language=ko`,
   );
 };
-
-export default movieData;
