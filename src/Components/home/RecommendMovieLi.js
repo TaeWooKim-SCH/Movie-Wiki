@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-import tw from 'tailwind-styled-components';
+import React, { useEffect, useState } from 'react';
 import { CATEGORY, MOVIE_LENGTH_LIMIT } from '../../Assets/ConstantValue';
 import MovieCard from '../MovieCard';
 import ScrollContainer from './ScrollContainer';
