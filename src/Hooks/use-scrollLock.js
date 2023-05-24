@@ -1,5 +1,3 @@
-import React from 'react';
-
 const useScrollLock = () => {
   const lockScroll = () => {
     document.body.style.overflow = 'hidden';

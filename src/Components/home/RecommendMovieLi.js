@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { CATEGORY, MOVIE_LENGTH_LIMIT } from '../../Assets/ConstantValue';
+import { movieIdActions } from '../../Store/movieId-slice';
 import MovieCard from '../MovieCard';
 
 const throttle = (func, ms) => {
@@ -28,27 +30,21 @@ function RecommendMovieLi({ category }) {
   };
 
   const onDragEnd = e => {
-    setIsDrag(false);
     e.preventDefault();
+    setIsDrag(false);
   };
 
   const onDragMove = e => {
-    if (isDrag) {
-      const { scrollWidth, clientWidth, scrollLeft } = scrollRef.current;
-      scrollRef.current.scrollLeft = startX - e.pageX;
-      if (scrollLeft === 0) {
-        setStartX(e.pageX);
-      } else if (scrollWidth <= clientWidth + scrollLeft) {
-        setStartX(e.pageX + scrollLeft);
-      }
+    const { scrollWidth, clientWidth, scrollLeft } = scrollRef.current;
+    scrollRef.current.scrollLeft = startX - e.pageX;
+    if (scrollLeft === 0) {
+      setStartX(e.pageX);
+    } else if (scrollWidth <= clientWidth + scrollLeft) {
+      setStartX(e.pageX + scrollLeft);
     }
   };
 
   const onThrottleDragMove = throttle(onDragMove, 10);
-
-  const onClick = e => {
-    e.preventDefault();
-  };
 
   useEffect(() => {
     const fetch = async () => {
@@ -61,25 +57,23 @@ function RecommendMovieLi({ category }) {
     fetch();
   }, []);
 
+  // Todo 스크롤 끝나고 모달 켜지는거 막아야함
   return (
-    <div>
-      <div
-        className="flex overflow-x-scroll scrollbar-hide"
-        ref={scrollRef}
-        onMouseDown={onDragStart}
-        onMouseMove={isDrag ? onThrottleDragMove : null}
-        onMouseUp={onDragEnd}
-        onMouseLeave={onDragEnd}
-        onClick={isDrag ? onClick : null}
-        role="presentation"
-      >
-        {!!datas.length &&
-          datas.map(data => (
-            <li>
-              <MovieCard movie={data} key={data.div} />
-            </li>
-          ))}
-      </div>
+    <div
+      className="relative flex overflow-x-scroll scrollbar-hide"
+      ref={scrollRef}
+      onMouseDown={onDragStart}
+      onMouseMove={isDrag ? onThrottleDragMove : null}
+      onMouseUp={onDragEnd}
+      onMouseLeave={onDragEnd}
+      role="presentation"
+    >
+      {!!datas.length &&
+        datas.map(data => (
+          <li>
+            <MovieCard movie={data} key={data.div} />
+          </li>
+        ))}
     </div>
   );
 }
