@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { css, styled } from 'styled-components';
-import { GrNext, GrPrevious } from 'react-icons/gr';
+import 'animate.css';
 import {
   BACKDROP_IMG_URL,
   CAROUSEL_DELAY,
   CAROUSEL_LENGTH_LIMIT,
   CATEGORY,
+  TRANSITION_TIME,
 } from '../../Assets/ConstantValue';
 
 function Carousel() {
@@ -13,6 +14,29 @@ function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const imgRef = useRef();
   const savedCallback = useRef();
+  const transitionStyle = `transform ${TRANSITION_TIME}ms ease 0s`;
+  const [slideTransiton, setSlideTransiton] = useState(transitionStyle);
+
+  const replaceSlice = idx => {
+    setTimeout(() => {
+      setSlideTransiton('');
+      setCurrentIndex(idx);
+    }, TRANSITION_TIME);
+  };
+
+  useEffect(() => {
+    if (imgArr) {
+      if (currentIndex === imgArr.length - 1) {
+        replaceSlice(1);
+      } else if (currentIndex === 0) {
+        replaceSlice(imgArr.length - 2);
+      }
+
+      if (currentIndex === 2) {
+        setSlideTransiton(transitionStyle);
+      }
+    }
+  }, [currentIndex]);
 
   const callback = () => {
     setCurrentIndex((currentIndex + 1) % imgArr.length);
@@ -22,25 +46,20 @@ function Carousel() {
     savedCallback.current = callback;
   });
 
-  const HandlerNextBtn = () => {
-    setCurrentIndex((currentIndex + 1) % imgArr.length);
-  };
-
-  const HandlerPrevBtn = () => {
-    if (currentIndex === 0) {
-      setCurrentIndex(imgArr.length - 1);
-    } else {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-
   useEffect(() => {
     const fetch = async () => {
       const res = await CATEGORY['일간'].func;
       if (res.ok) {
         const response = await res.clone().json();
         const movies = response.results.slice(0, CAROUSEL_LENGTH_LIMIT);
-        setImgArr(movies.map(movie => BACKDROP_IMG_URL + movie.backdrop_path));
+        const infiniteMovie = [
+          movies[CAROUSEL_LENGTH_LIMIT - 1],
+          ...movies,
+          movies[0],
+        ];
+        setImgArr(
+          infiniteMovie.map(movie => BACKDROP_IMG_URL + movie.backdrop_path),
+        );
       }
     };
     fetch();
@@ -54,18 +73,21 @@ function Carousel() {
 
   return (
     <div className="overflow-hidden">
-      <Slider className=" flex" currentIndex={currentIndex}>
-        {imgArr && imgArr.map(img => <img ref={imgRef} src={img} />)}
+      <Slider
+        className="flex"
+        currentIndex={currentIndex}
+        slideTransiton={slideTransiton}
+      >
+        {imgArr && imgArr.map((el, idx) => <img ref={imgRef} src={el} />)}
       </Slider>
-      <div className="flex w-full cursor-pointer justify-between">
-        <GrPrevious size={40} onClick={HandlerPrevBtn} />
-        <GrNext size={40} onClick={HandlerNextBtn} />
-      </div>
     </div>
   );
 }
 
 const Slider = styled.div`
+  ${({ slideTransiton }) => css`
+    transition: ${slideTransiton};
+  `}
   ${({ currentIndex }) => css`
     transform: translateX(${-100 * currentIndex}%);
   `}
