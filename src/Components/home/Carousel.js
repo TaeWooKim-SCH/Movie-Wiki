@@ -75,8 +75,8 @@ function Carousel() {
     <div className="overflow-hidden">
       <Slider
         className="flex"
-        currentIndex={currentIndex}
-        slideTransiton={slideTransiton}
+        currentindex={currentIndex}
+        slidetransiton={slideTransiton}
       >
         {imgArr && imgArr.map((el, idx) => <img ref={imgRef} src={el} />)}
       </Slider>
@@ -85,11 +85,11 @@ function Carousel() {
 }
 
 const Slider = styled.div`
-  ${({ slideTransiton }) => css`
-    transition: ${slideTransiton};
+  ${({ slidetransiton }) => css`
+    transition: ${slidetransiton};
   `}
-  ${({ currentIndex }) => css`
-    transform: translateX(${-100 * currentIndex}%);
+  ${({ currentindex }) => css`
+    transform: translateX(${-100 * currentindex}%);
   `}
 `;
 
