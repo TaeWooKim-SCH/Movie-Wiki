@@ -21,6 +21,9 @@ module.exports = {
         1216: '1216px',
         400: '400px',
       },
+      width: {
+        1280: '1280px',
+      },
     },
   },
   plugins: [

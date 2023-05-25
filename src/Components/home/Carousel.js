@@ -78,7 +78,7 @@ function Carousel() {
         currentindex={currentIndex}
         slidetransiton={slideTransiton}
       >
-        {imgArr && imgArr.map((el, idx) => <img ref={imgRef} src={el} />)}
+        {imgArr && imgArr.map((el, idx) => <Img ref={imgRef} src={el} />)}
       </Slider>
     </div>
   );
@@ -91,6 +91,10 @@ const Slider = styled.div`
   ${({ currentindex }) => css`
     transform: translateX(${-100 * currentindex}%);
   `}
+`;
+
+const Img = styled.img`
+  box-shadow: 60px -16px teal;
 `;
 
 export default Carousel;

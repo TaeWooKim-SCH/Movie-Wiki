@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import throttle from '../../utils/throttle';
+import Mouse from './Mouse';
 
 function ScrollContainer({ children }) {
   const scrollRef = useRef(null);
@@ -32,7 +33,7 @@ function ScrollContainer({ children }) {
 
   const onThrottleDragMove = throttle(onDragMove, 10);
   return (
-    <ScrollDiv
+    <ScrollUL
       ref={scrollRef}
       onMouseDown={onDragStart}
       onMouseMove={isDrag ? onThrottleDragMove : null}
@@ -41,12 +42,12 @@ function ScrollContainer({ children }) {
       role="presentation"
     >
       {children}
-    </ScrollDiv>
+    </ScrollUL>
   );
 }
 
-const ScrollDiv = tw.div`
-relative flex overflow-x-scroll scrollbar-hide
+const ScrollUL = tw.ul`
+relative flex overflow-x-scroll scrollbar-hide pt-5
 `;
 
 export default ScrollContainer;
