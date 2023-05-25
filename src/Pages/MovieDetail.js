@@ -20,7 +20,7 @@ function ModalOverlay() {
   const movieId = useSelector(state => state.ID.id);
   const dispatch = useDispatch();
   const [movieData, setMovieData] = useState(null);
-  const [backdropURL, setbackdropURL] = useState('');
+  const [backdropURL, setbackdropURL] = useState('./defaultBackdrop.png');
   const [postURL, setpostURL] = useState('');
   const [videoData, setVideoData] = useState(null);
   const [creditData, setCreditData] = useState(null);
@@ -33,7 +33,9 @@ function ModalOverlay() {
   useEffect(() => {
     fetchMovieData(movieDetailFetchedData(movieId, API_KEY), data => {
       setMovieData(data);
-      setbackdropURL(`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`);
+      if (data.backdrop_path) {
+        setbackdropURL(`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`);
+      }
       setpostURL(`https://image.tmdb.org/t/p/w500${data.poster_path}`);
     });
     fetchVideoData(videoFetchedData(movieId, API_KEY), data => {

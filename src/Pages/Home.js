@@ -5,9 +5,11 @@ import RecommendList from '../Components/home/RecommendList';
 export default function Home() {
   return (
     <section id="home" className="ml-56">
-      <header className="mb-5 w-full bg-purple-300">
-        <Carousel />
-      </header>
+      <div className="flex justify-center">
+        <header className="mb-5 w-1280 bg-purple-300">
+          <Carousel />
+        </header>
+      </div>
       <div className="pl-5">
         <RecommendList />
       </div>

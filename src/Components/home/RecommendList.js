@@ -11,7 +11,7 @@ function RecommendList() {
       {category.map((title, idx) => (
         <div key={uuid()}>
           <RecommendTitle key={uuid()} category={title} />
-          <RecommendMovieLi key={uuid()} category={category[idx]} />
+          <RecommendMovieLi category={category[idx]} />
         </div>
       ))}
     </>
