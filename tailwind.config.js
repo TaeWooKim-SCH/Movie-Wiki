@@ -36,5 +36,5 @@ module.exports = {
         addUtilities(newUtilities, ['responsive']);
       },
     ],
-  }
-}
+  },
+};

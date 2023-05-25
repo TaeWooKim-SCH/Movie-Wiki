@@ -62,7 +62,7 @@ function ModalOverlay() {
         <Main
           backdrop={backdropURL}
           className="h-full w-full rounded-md bg-gradient-to-r from-cyan-500 
-          to-blue-500 bg-cover bg-no-repeat text-black"
+          to-blue-500 bg-cover bg-center bg-no-repeat text-black"
         >
           <ShadowDiv>
             <button

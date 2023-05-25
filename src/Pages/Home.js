@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import movieData from '../API/movie';
+import { movieData } from '../API/movie';
 import { API_KEY } from '../Assets/ConstantValue';
 import MovieCard from '../Components/MovieCard';
 
