@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import tw from 'tailwind-styled-components';
 import { CATEGORY, MOVIE_LENGTH_LIMIT } from '../../Assets/ConstantValue';
-import { movieIdActions } from '../../Store/movieId-slice';
 import MovieCard from '../MovieCard';
 
 const throttle = (func, ms) => {
@@ -59,8 +58,7 @@ function RecommendMovieLi({ category }) {
 
   // Todo 스크롤 끝나고 모달 켜지는거 막아야함
   return (
-    <div
-      className="relative flex overflow-x-scroll scrollbar-hide"
+    <ScrollDiv
       ref={scrollRef}
       onMouseDown={onDragStart}
       onMouseMove={isDrag ? onThrottleDragMove : null}
@@ -74,12 +72,12 @@ function RecommendMovieLi({ category }) {
             <MovieCard movie={data} key={data.div} />
           </li>
         ))}
-    </div>
+    </ScrollDiv>
   );
 }
 
-// const ScrollUL = styled.ul`
-//   transform: ${props => props.width};
-// `;
+const ScrollDiv = tw.div`
+relative flex overflow-x-scroll scrollbar-hide
+`;
 
 export default RecommendMovieLi;

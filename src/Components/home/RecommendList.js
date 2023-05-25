@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'react-uuid';
 import RecommendMovieLi from './RecommendMovieLi';
 import RecommendTitle from './RecommendTitle';
 
@@ -8,10 +9,10 @@ function RecommendList() {
   return (
     <>
       {category.map((title, idx) => (
-        <>
-          <RecommendTitle key={title} category={title} />
-          <RecommendMovieLi category={category[idx]} />
-        </>
+        <div key={uuid()}>
+          <RecommendTitle key={uuid()} category={title} />
+          <RecommendMovieLi key={uuid()} category={category[idx]} />
+        </div>
       ))}
     </>
   );
