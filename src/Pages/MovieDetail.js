@@ -21,7 +21,7 @@ function ModalOverlay() {
   const dispatch = useDispatch();
   const [movieData, setMovieData] = useState(null);
   const [backdropURL, setbackdropURL] = useState('./defaultBackdrop.png');
-  const [postURL, setpostURL] = useState('');
+  const [postURL, setpostURL] = useState('./defaultPoster.png');
   const [videoData, setVideoData] = useState(null);
   const [creditData, setCreditData] = useState(null);
   const [isFetching, setIsFetching] = useState(true);
@@ -36,7 +36,9 @@ function ModalOverlay() {
       if (data.backdrop_path) {
         setbackdropURL(`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`);
       }
-      setpostURL(`https://image.tmdb.org/t/p/w500${data.poster_path}`);
+      if (data.poster_path) {
+        setpostURL(`https://image.tmdb.org/t/p/w500${data.poster_path}`);
+      }
     });
     fetchVideoData(videoFetchedData(movieId, API_KEY), data => {
       setVideoData(data);

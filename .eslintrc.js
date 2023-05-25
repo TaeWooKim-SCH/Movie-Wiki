@@ -11,7 +11,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'react-app',
   ],
-  parser: 'babel-parser',
+  parser: '@babel/eslint-parser',
   parserOptions: {
     requireConfigFile: false,
     babelOptions: {

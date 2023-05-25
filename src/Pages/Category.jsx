@@ -4,7 +4,7 @@ import { API_KEY, GENRE_LIST } from '../Assets/ConstantValue';
 import Tag from '../Components/Tag';
 import { movieGenreData } from '../API/movie';
 import MovieCard from '../Components/MovieCard';
-import useFetchMovie from '../Hooks/use-fetchMovie';
+import useFetchMovie from '../Hooks/useFetchMovie';
 import useIntersectionObserver from '../Hooks/useIntersectionObserver';
 
 function Category() {
