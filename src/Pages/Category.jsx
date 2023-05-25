@@ -34,6 +34,8 @@ function Category() {
         if (pageNum === 1) {
           setGenreList(data.results);
           setIsLoading(false);
+
+          setCanLoadMore(true);
           return;
         }
         if (data.results && data.results.length > 0) {
@@ -79,6 +81,7 @@ function Category() {
     isFirstRender.current = true;
     handleTagChange();
 
+    setEnd(false);
     setPageNum(1);
     if (pageNum === 1) {
       fetchMovies();

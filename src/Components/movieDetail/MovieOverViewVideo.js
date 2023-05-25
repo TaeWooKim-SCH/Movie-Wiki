@@ -20,7 +20,7 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
       <div className="my-10 border-[0.3px] border-slate-600" />
       <div className="flex h-fit w-fit gap-5 text-white ">
         <MoviePoster src={postURL} alt="moviePoster" />
-        <div className="flex w-full justify-between">
+        <div className="relative flex h-80 w-full justify-between">
           <OverviewDiv>
             <p className="break-keep">{movieData.overview}</p>
             <ul>
@@ -38,13 +38,13 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
           </OverviewDiv>
           {videoPath && (
             <iframe
-              width="30%"
-              height="50%"
+              width="240rem"
+              height="160rem"
               src={`https://www.${videoPath.site}.com/embed/${videoPath.key}`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-              className="self-end"
+              className="absolute bottom-0 right-20"
             />
           )}
         </div>
@@ -54,7 +54,7 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
 }
 
 const MoviePoster = tw.img`
-w-1/5 border-[0.3px] border-slate-600
+ w-42 h-72 border-[0.3px] border-slate-600
 `;
 
 const MovieGenres = styled.li`
