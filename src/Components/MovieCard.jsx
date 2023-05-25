@@ -9,7 +9,7 @@ import {
   STAR_POINT_INITIAL_NUMBER,
 } from '../Assets/ConstantValue';
 import { movieIdActions } from '../Store/movieId-slice';
-import useScrollLock from '../Hooks/use-scrollLock';
+import useScrollLock from '../Hooks/useScrollLock';
 
 function MovieCard({ movie }) {
   const dispatch = useDispatch();

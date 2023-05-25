@@ -24,17 +24,21 @@ module.exports = {
           400: '400px',
         },
       },
-    },
-    plugins: [
-      ({ addUtilities }) => {
-        const newUtilities = {
-          '.backface-hidden': {
-            backfaceVisibility: 'hidden',
-          },
-        };
-
-        addUtilities(newUtilities, ['responsive']);
+      width: {
+        1280: '1280px',
       },
-    ],
+    },
   },
+  plugins: [
+    // eslint-disable-next-line global-require
+    require('tailwind-scrollbar-hide'),
+    ({ addUtilities }) => {
+      const newUtilities = {
+        '.backface-hidden': {
+          backfaceVisibility: 'hidden',
+        },
+      };
+      addUtilities(newUtilities, ['responsive']);
+    },
+  ],
 };
