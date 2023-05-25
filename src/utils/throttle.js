@@ -1,5 +1,6 @@
 const throttle = (func, ms) => {
   let throttled = false;
+
   return (...args) => {
     if (!throttled) {
       throttled = true;

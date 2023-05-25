@@ -6,6 +6,7 @@ import { movieGenreData } from '../API/movie';
 import MovieCard from '../Components/MovieCard';
 import useFetchMovie from '../Hooks/useFetchMovie';
 import useIntersectionObserver from '../Hooks/useIntersectionObserver';
+import TopButton from '../Components/TopButton';
 
 function Category() {
   const [genreList, setGenreList] = useState([]);
@@ -98,6 +99,7 @@ function Category() {
 
   return (
     <section id="category" className="ml-56">
+      <TopButton />
       <div className="m-5">
         <TagContainer>
           {GENRE_LIST.map(e => (
@@ -114,7 +116,11 @@ function Category() {
         {tagList || '태그를 클릭해주세요.'}
       </div>
       <div className="flex flex-wrap">
-        {genreList && genreList.map(e => <MovieCard movie={e} key={e.id} />)}
+        {genreList.length > 0 ? (
+          genreList.map(e => <MovieCard movie={e} key={e.id} />)
+        ) : (
+          <div>데이터 없음</div>
+        )}
       </div>
       <div id="nextPage" ref={target} />
       {isLoading && (
