@@ -9,9 +9,7 @@ function Mouse() {
         <Doi className="doi" />
         <Trei className="trei" />
       </div>
-      <MouseDiv className="mouse">
-        <Wheel className="wheel" />
-      </MouseDiv>
+      <MouseDiv className="mouse" />
       <div className="flex">
         <Unu className="unu" />
         <Doi className="doi" />
@@ -40,7 +38,7 @@ const Span = styled.span`
       opacity: 0.5;
     }
     100% {
-      opacity: 1;
+      opacity: 0.8;
     }
   }
   @-moz-keyframes mouse-scroll {
@@ -62,7 +60,7 @@ const Span = styled.span`
       opacity: 0.5;
     }
     100% {
-      opacity: 1;
+      opacity: 0.8;
     }
   }
   @keyframes mouse-scroll {
@@ -73,7 +71,7 @@ const Span = styled.span`
       opacity: 0.5;
     }
     100% {
-      opacity: 1;
+      opacity: 0.8;
     }
   }
 `;
@@ -125,56 +123,8 @@ const MouseDiv = styled.div`
   width: 14px;
   border-radius: 10px;
   transform: rotate(90deg);
-  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
   top: 170px;
-`;
-
-const Wheel = styled.div`
-  height: 5px;
-  width: 2px;
-  display: block;
-  transform: rotate(0deg);
-  margin: 5px auto;
-  background: white;
-  position: relative;
-  -webkit-animation: mouse-wheel 1.2s ease infinite;
-  animation: mouse-wheel 1.2s ease infinite;
-  -moz-animation: mouse-wheel 1.2s ease infinite;
-  animation: mouse-wheel 1.2s ease infinite;
-
-  @keyframes mouse-wheel {
-    0% {
-      opacity: 1;
-      -webkit-transform: translateY(0);
-      -ms-transform: translateY(0);
-      transform: translateY(0);
-    }
-
-    100% {
-      opacity: 0;
-      -webkit-transform: translateY(6px);
-      -ms-transform: translateY(6px);
-      transform: translateY(6px);
-    }
-  }
-
-  @keyframes mouse-wheel {
-    0% {
-      top: 0px;
-    }
-    25% {
-      top: 2px;
-    }
-    50% {
-      top: 0px;
-    }
-    75% {
-      top: -2px;
-    }
-    100% {
-      top: 0px;
-    }
-  }
 `;
 
 export default Mouse;
