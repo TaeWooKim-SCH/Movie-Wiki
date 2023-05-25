@@ -48,6 +48,7 @@ function ScrollContainer({ children }) {
 
 const ScrollUL = tw.ul`
 relative flex overflow-x-scroll scrollbar-hide pt-5
+cursor-ew-resize
 `;
 
 export default ScrollContainer;
