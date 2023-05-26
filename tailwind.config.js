@@ -25,6 +25,10 @@ module.exports = {
         1216: '1216px',
         400: '400px',
       },
+      screens: {
+        lg: '1360px',
+        md: '1280px',
+      },
     },
   },
   plugins: [

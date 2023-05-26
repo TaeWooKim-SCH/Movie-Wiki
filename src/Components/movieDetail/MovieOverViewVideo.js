@@ -20,14 +20,16 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
       <div className="my-10 border-[0.3px] border-slate-600" />
       <div className="flex h-fit w-fit gap-5 text-white ">
         <MoviePoster src={postURL} alt="moviePoster" />
-        <div className="relative flex h-80 w-full justify-between">
+        <div className="relative flex h-80 w-full justify-between gap-5">
           <OverviewDiv>
-            <p className="break-keep">{movieData.overview}</p>
+            <p className="mb-1 break-keep text-sm lg:text-base">
+              {movieData.overview}
+            </p>
             <ul>
               {movieData.genres.map(genre => {
                 return (
                   <MovieGenres
-                    className="px-[20px] py-[5px] text-xs"
+                    className="lg: mb-2 px-[10px] py-[5px] text-xs lg:px-[20px]"
                     key={genre.id}
                   >
                     {genre.name}
@@ -44,7 +46,7 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-              className="absolute bottom-0 right-20"
+              className="hidden self-center md:block"
             />
           )}
         </div>
@@ -66,7 +68,7 @@ const MovieGenres = styled.li`
 `;
 
 const OverviewDiv = tw.div`
-flex h-full w-1/2 flex-col justify-between
+flex h-72 flex-col justify-between
 `;
 
 export default MovieOverViewVideo;
