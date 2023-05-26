@@ -32,7 +32,7 @@ module.exports = {
     },
   },
   plugins: [
-    // eslint-disable-next-line global-require
+    // eslint-disable-next-line global-require, import/no-unresolved
     require('tailwind-scrollbar-hide'),
     ({ addUtilities }) => {
       const newUtilities = {
