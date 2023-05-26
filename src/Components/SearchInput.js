@@ -3,9 +3,9 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 export default function SearchInput({ inputHandler, searchHandler }) {
   return (
-    <section className="fixed relative w-400 pt-5">
+    <section className="w-400 fixed relative pt-5">
       <input
-        className="mb-32 h-14 w-400 rounded-full pl-5"
+        className="w-400 mb-32 h-14 rounded-full pl-5"
         placeholder="검색어를 입력해주세요."
         onChange={e => inputHandler(e)}
       />

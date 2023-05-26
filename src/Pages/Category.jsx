@@ -6,6 +6,7 @@ import { movieGenreData } from '../API/movie';
 import MovieCard from '../Components/MovieCard';
 import useFetchMovie from '../Hooks/useFetchMovie';
 import useIntersectionObserver from '../Hooks/useIntersectionObserver';
+import EmptyMovie from '../Components/EmptyMovie';
 
 function Category() {
   const [genreList, setGenreList] = useState([]);
@@ -15,6 +16,7 @@ function Category() {
   const [isLoading, setIsLoading] = useState(false);
   const [end, setEnd] = useState(false);
   const [canLoadMore, setCanLoadMore] = useState(true);
+  const [emptyData, setEmptyData] = useState(false);
   const target = useRef(null);
   const isFirstRender = useRef(true);
   const { fetchData: fetchMovieData } = useFetchMovie();
@@ -31,10 +33,15 @@ function Category() {
         pageNum,
       ),
       data => {
+        setEmptyData(false);
+        if (data.results.length === 0 && genreList.length === 0) {
+          setEmptyData(true);
+          setIsLoading(false);
+          return;
+        }
         if (pageNum === 1) {
           setGenreList(data.results);
           setIsLoading(false);
-
           setCanLoadMore(true);
           return;
         }
@@ -47,7 +54,6 @@ function Category() {
           return;
         }
 
-        console.log('데이터 끝 ');
         setEnd(true);
       },
     );
@@ -80,7 +86,6 @@ function Category() {
   useEffect(() => {
     isFirstRender.current = true;
     handleTagChange();
-
     setEnd(false);
     setPageNum(1);
     if (pageNum === 1) {
@@ -115,6 +120,7 @@ function Category() {
       </div>
       <div className="flex flex-wrap">
         {genreList && genreList.map(e => <MovieCard movie={e} key={e.id} />)}
+        {emptyData && <EmptyMovie message="Please change the tag." />}
       </div>
       <div id="nextPage" ref={target} />
       {isLoading && (
