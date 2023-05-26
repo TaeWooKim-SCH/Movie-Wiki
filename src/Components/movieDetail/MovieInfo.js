@@ -15,18 +15,18 @@ function MovieInfo({ movieData, creditData }) {
 
   return (
     <>
-      <h1 className="mb-3 text-7xl text-white">{movieData.original_title}</h1>
+      <h1 className="mb-3 text-4xl text-white">{movieData.original_title}</h1>
       {isBookmarkChecked ? (
         <BsFillBookmarkPlusFill
-          className="my-2"
-          size={30}
+          className="my-2 cursor-pointer"
+          size={20}
           color="white"
           onClick={HandlerBookmark}
         />
       ) : (
         <BsBookmarkPlus
-          className="my-2"
-          size={30}
+          className="my-2 cursor-pointer"
+          size={20}
           color="white"
           onClick={HandlerBookmark}
         />
@@ -50,7 +50,7 @@ function MovieInfo({ movieData, creditData }) {
         </div>
       </div>
       <div className="flex">
-        <p className=" mr-2 text-slate-600">출연</p>
+        <p className=" mr-2 text-white">출연</p>
         <ul className="flex text-white">
           {cast.map(el => {
             return (

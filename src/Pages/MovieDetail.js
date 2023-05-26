@@ -114,7 +114,7 @@ function MovieDetail() {
 }
 
 const ModalDiv = tw.div`
-  w-4/5 h-4/5 relative rounded-md overflow-hidden
+  w-3/4 h-[40rem] relative rounded-md overflow-hidden
 `;
 
 const Main = styled.main`
