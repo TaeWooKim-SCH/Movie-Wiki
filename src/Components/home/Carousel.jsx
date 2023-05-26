@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { css, styled } from 'styled-components';
 import 'animate.css';
+import uuid from 'react-uuid';
 import {
   BACKDROP_IMG_URL,
   CAROUSEL_DELAY,
@@ -12,7 +13,6 @@ import {
 function Carousel() {
   const [imgArr, setImgArr] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const imgRef = useRef();
   const savedCallback = useRef();
   const transitionStyle = `transform ${TRANSITION_TIME}ms ease 0s`;
   const [slideTransiton, setSlideTransiton] = useState(transitionStyle);
@@ -44,7 +44,7 @@ function Carousel() {
 
   useEffect(() => {
     savedCallback.current = callback;
-  });
+  }, [callback]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -78,7 +78,7 @@ function Carousel() {
         currentindex={currentIndex}
         slidetransiton={slideTransiton}
       >
-        {imgArr && imgArr.map((el, idx) => <img ref={imgRef} src={el} />)}
+        {imgArr && imgArr.map(imgUrl => <img src={imgUrl} />)}
       </Slider>
     </div>
   );
@@ -93,4 +93,4 @@ const Slider = styled.div`
   `}
 `;
 
-export default Carousel;
+export default React.memo(Carousel);

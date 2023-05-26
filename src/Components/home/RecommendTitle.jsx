@@ -6,22 +6,26 @@ import Mouse from './Mouse';
 function RecommendTitle({ category }) {
   return (
     <div className="relative flex">
-      <RecommendColorP className="mr-2">{category}</RecommendColorP>
-      <RecommendP className="mr-2">{CATEGORY[category].title}</RecommendP>
+      <RecommendColorP>{category}</RecommendColorP>
+      <RecommendP>{CATEGORY[category].title}</RecommendP>
       <RecommendP>영화</RecommendP>
-      <div className="left-50 w-90 absolute top-20 ml-4">
+      <MouseWrapper>
         <Mouse />
-      </div>
+      </MouseWrapper>
     </div>
   );
 }
 
 const RecommendP = tw.p`
-  text-white text-[3rem] font-bold
+text-white text-[3rem] font-bold
 `;
 
 const RecommendColorP = tw(RecommendP)`
-text-blueWhite
+text-blueWhite mr-2
+`;
+
+const MouseWrapper = tw.div`
+left-50 w-90 absolute top-20 ml-4
 `;
 
 export default RecommendTitle;

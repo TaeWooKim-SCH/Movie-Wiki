@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import useFetchMovie from '../Hooks/useFetchMovie';
+import useScrollLock from '../Hooks/useScrollLock';
 import MovieInfo from '../Components/movieDetail/MovieInfo';
 import MovieOverViewVideo from '../Components/movieDetail/MovieOverViewVideo';
 import {
@@ -14,44 +15,95 @@ import {
 } from '../API/movie';
 import { API_KEY } from '../Assets/ConstantValue';
 import { movieIdActions } from '../Store/movieId-slice';
-import useScrollLock from '../Hooks/useScrollLock';
+import {
+  SET_BACKDROP,
+  SET_CREDIT,
+  SET_MOVIE,
+  SET_POSTER,
+  SET_VIDEO,
+} from '../Assets/ActionType';
+
+const initialState = {
+  backdropURL: './defaultBackdrop.png',
+  postURL: './defaultPoster.png',
+  videoData: null,
+  creditData: null,
+  movieData: null,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case SET_BACKDROP:
+      return {
+        ...state,
+        backdropURL: action.payload ? action.payload : initialState.backdropURL,
+      };
+    case SET_POSTER:
+      return {
+        ...state,
+        postURL: action.payload ? action.payload : initialState.postURL,
+      };
+    case SET_VIDEO:
+      return { ...state, videoData: action.payload };
+    case SET_CREDIT:
+      return { ...state, creditData: action.payload };
+    case SET_MOVIE:
+      return { ...state, movieData: action.payload };
+    default:
+      return state;
+  }
+};
 
 function ModalOverlay() {
   const movieId = useSelector(state => state.ID.id);
   const dispatch = useDispatch();
-  const [movieData, setMovieData] = useState(null);
-  const [backdropURL, setbackdropURL] = useState('./defaultBackdrop.png');
-  const [postURL, setpostURL] = useState('./defaultPoster.png');
-  const [videoData, setVideoData] = useState(null);
-  const [creditData, setCreditData] = useState(null);
+  const [state, stateDispatch] = useReducer(reducer, initialState);
+
   const [isFetching, setIsFetching] = useState(true);
-  const { fetchData: fetchMovieData } = useFetchMovie();
-  const { fetchData: fetchVideoData } = useFetchMovie();
-  const { fetchData: fetchCreditData } = useFetchMovie();
+  const { fetchData } = useFetchMovie();
   const { openScroll } = useScrollLock();
 
   useEffect(() => {
-    fetchMovieData(movieDetailFetchedData(movieId, API_KEY), data => {
-      setMovieData(data);
+    fetchData(movieDetailFetchedData(movieId, API_KEY), data => {
+      stateDispatch({
+        type: SET_MOVIE,
+        payload: data,
+      });
       if (data.backdrop_path) {
-        setbackdropURL(`https://image.tmdb.org/t/p/w1280${data.backdrop_path}`);
+        stateDispatch({
+          type: SET_BACKDROP,
+          payload: `https://image.tmdb.org/t/p/w1280${data.backdrop_path}`,
+        });
       }
       if (data.poster_path) {
-        setpostURL(`https://image.tmdb.org/t/p/w500${data.poster_path}`);
+        stateDispatch({
+          type: SET_POSTER,
+          payload: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
+        });
       }
     });
-    fetchVideoData(videoFetchedData(movieId, API_KEY), data => {
-      setVideoData(data);
+    fetchData(videoFetchedData(movieId, API_KEY), data => {
+      stateDispatch({
+        type: SET_VIDEO,
+        payload: data,
+      });
     });
-    fetchCreditData(creditFetchedData(movieId, API_KEY), data => {
-      setCreditData(data);
+    fetchData(creditFetchedData(movieId, API_KEY), data => {
+      stateDispatch({
+        type: SET_CREDIT,
+        payload: data,
+      });
     });
   }, []);
 
   useEffect(() => {
-    if (movieData !== null && videoData !== null && creditData !== null)
+    if (
+      state.movieData !== null &&
+      state.videoData !== null &&
+      state.creditData !== null
+    )
       setIsFetching(false);
-  }, [movieData, videoData, creditData]);
+  }, [state.movieData, state.videoData, state.creditData]);
 
   const HandlerModalClose = () => {
     openScroll();
@@ -63,7 +115,7 @@ function ModalOverlay() {
       {isFetching && <p>...Loading</p>}
       {!isFetching && (
         <Main
-          backdrop={backdropURL}
+          backdrop={state.backdropURL}
           className="h-full w-full rounded-md bg-gradient-to-r from-cyan-500 
           to-blue-500 bg-cover bg-center bg-no-repeat text-black"
         >
@@ -75,11 +127,14 @@ function ModalOverlay() {
             >
               <AiOutlineClose size={21} color="white" />
             </button>
-            <MovieInfo movieData={movieData} creditData={creditData} />
+            <MovieInfo
+              movieData={state.movieData}
+              creditData={state.creditData}
+            />
             <MovieOverViewVideo
-              postURL={postURL}
-              movieData={movieData}
-              videoData={videoData}
+              postURL={state.postURL}
+              movieData={state.movieData}
+              videoData={state.videoData}
             />
           </ShadowDiv>
         </Main>
@@ -95,6 +150,20 @@ function Backdrop() {
     openScroll();
     dispatch(movieIdActions.closeModal());
   };
+
+  const HandlerESC = e => {
+    if (e.key === 'Escape') {
+      HandlerModalClose();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', HandlerESC);
+    return () => {
+      window.removeEventListener('keydown', HandlerESC);
+    };
+  }, []);
+
   return (
     <BackdropDiv onClick={HandlerModalClose}>
       <ModalOverlay />

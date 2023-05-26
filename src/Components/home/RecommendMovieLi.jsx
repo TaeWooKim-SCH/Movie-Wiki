@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import uuid from 'react-uuid';
 import { CATEGORY, MOVIE_LENGTH_LIMIT } from '../../Assets/ConstantValue';
 import MovieCard from '../MovieCard';
 import ScrollContainer from './ScrollContainer';
 
 function RecommendMovieLi({ category }) {
-  const [datas, setDatas] = useState([]);
+  const [datas, setDatas] = useState(null);
 
   useEffect(() => {
     const fetch = async () => {
@@ -17,13 +18,12 @@ function RecommendMovieLi({ category }) {
     fetch();
   }, []);
 
-  // Todo 스크롤 끝나고 모달 켜지는거 막아야함
   return (
     <ScrollContainer className="relative">
-      {!!datas.length &&
+      {datas &&
         datas.map(data => (
-          <li>
-            <MovieCard movie={data} key={data.div} />
+          <li key={uuid()}>
+            <MovieCard movie={data} />
           </li>
         ))}
     </ScrollContainer>
