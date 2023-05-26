@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import tw from 'tailwind-styled-components';
-import SearchInput from '../Components/SearchInput';
-import SearchResult from '../Components/SearchResult';
-import SearchSimilar from '../Components/SearchSimilar';
+import SearchInput from '../Components/search/SearchInput';
+import SearchResult from '../Components/search/SearchResult';
+import SearchSimilar from '../Components/search/SearchSimilar';
 
 export default function Search() {
   const [input, setInput] = useState('');
   const [keyword, setKeyword] = useState('');
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
+  const [genre, setGenre] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState('');
   const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
@@ -36,18 +37,30 @@ export default function Search() {
     )
       .then(res => res.json())
       .then(json => {
+        if (!json.results.length) {
+          setData(json.results);
+          setId('');
+          setIsLoading(false);
+          return;
+        }
         setData(json.results);
         setId(json.results[0].id);
         setIsLoading(false);
+        setGenre(json.results[0].genre_ids[0]);
       });
   }, [keyword]);
 
   return (
     <SearchMain id="search">
       <SearchInput inputHandler={inputHandler} searchHandler={searchHandler} />
-      <section>
+      <section className="max-w-[900px]">
+        {!data.length && (
+          <div className="text-3xl font-bold text-white">
+            검색 결과가 없습니다.
+          </div>
+        )}
         {data.length && <SearchResult data={data} keyword={keyword} />}
-        {data.length && (
+        {data.length && id && (
           <SearchSimilar
             page={page}
             setPage={setPage}
@@ -55,6 +68,7 @@ export default function Search() {
             id={id}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
+            genre={genre}
           />
         )}
       </section>
@@ -66,7 +80,7 @@ const SearchMain = tw.section`
   flex 
   flex-col 
   justify-start 
-  items-center 
+  items-center
   w-full 
   h-screen 
   pl-56

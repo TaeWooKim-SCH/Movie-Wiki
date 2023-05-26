@@ -95,6 +95,8 @@ const Nav = tw.nav`
   top-0 
   left-0
   z-[5]
+  border-r-2
+  border-blueWhite
 `;
 
 const Profile = tw.div`
