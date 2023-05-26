@@ -7,6 +7,7 @@ import MovieCard from '../Components/MovieCard';
 import useFetchMovie from '../Hooks/useFetchMovie';
 import useIntersectionObserver from '../Hooks/useIntersectionObserver';
 import TopButton from '../Components/TopButton';
+import EmptyMovie from '../Components/EmptyMovie';
 
 function Category() {
   const [genreList, setGenreList] = useState([]);
@@ -16,6 +17,7 @@ function Category() {
   const [isLoading, setIsLoading] = useState(false);
   const [end, setEnd] = useState(false);
   const [canLoadMore, setCanLoadMore] = useState(true);
+  const [emptyData, setEmptyData] = useState(false);
   const target = useRef(null);
   const isFirstRender = useRef(true);
   const { fetchData: fetchMovieData } = useFetchMovie();
@@ -32,10 +34,15 @@ function Category() {
         pageNum,
       ),
       data => {
+        setEmptyData(false);
+        if (data.results.length === 0 && genreList.length === 0) {
+          setEmptyData(true);
+          setIsLoading(false);
+          return;
+        }
         if (pageNum === 1) {
           setGenreList(data.results);
           setIsLoading(false);
-
           setCanLoadMore(true);
           return;
         }
@@ -48,7 +55,6 @@ function Category() {
           return;
         }
 
-        console.log('데이터 끝 ');
         setEnd(true);
       },
     );
@@ -81,7 +87,6 @@ function Category() {
   useEffect(() => {
     isFirstRender.current = true;
     handleTagChange();
-
     setEnd(false);
     setPageNum(1);
     if (pageNum === 1) {
@@ -116,11 +121,8 @@ function Category() {
         {tagList || '태그를 클릭해주세요.'}
       </div>
       <div className="flex flex-wrap">
-        {genreList.length > 0 ? (
-          genreList.map(e => <MovieCard movie={e} key={e.id} />)
-        ) : (
-          <div>데이터 없음</div>
-        )}
+        {genreList && genreList.map(e => <MovieCard movie={e} key={e.id} />)}
+        {emptyData && <EmptyMovie message="Please change the tag." />}
       </div>
       <div id="nextPage" ref={target} />
       {isLoading && (
