@@ -1,11 +1,16 @@
-const throttle = (func, ms) => {
+const throttle = (func, ms, now) => {
   let throttled = false;
 
   return (...args) => {
     if (!throttled) {
       throttled = true;
-      setTimeout(() => {
+      if (now) {
         func(...args);
+      }
+      setTimeout(() => {
+        if (!now) {
+          func(...args);
+        }
         throttled = false;
       }, ms);
     }

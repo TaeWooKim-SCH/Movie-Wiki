@@ -3,9 +3,17 @@ import { AiOutlineUpCircle } from 'react-icons/ai';
 import throttle from '../utils/throttle';
 
 function TopButton() {
-  const handleScrollUp = throttle(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, 1000);
+  const handleScrollUp = throttle(
+    () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    },
+    1000,
+    true,
+  );
+
+  // const handleScrollUp = () => {
+  //   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  // };
 
   return (
     <button
