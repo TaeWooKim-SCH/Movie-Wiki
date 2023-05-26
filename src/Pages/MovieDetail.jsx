@@ -95,6 +95,20 @@ function Backdrop() {
     openScroll();
     dispatch(movieIdActions.closeModal());
   };
+
+  const HandlerESC = e => {
+    if (e.key === 'Escape') {
+      HandlerModalClose();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', HandlerESC);
+    return () => {
+      window.removeEventListener('keydown', HandlerESC);
+    };
+  }, []);
+
   return (
     <BackdropDiv onClick={HandlerModalClose}>
       <ModalOverlay />
