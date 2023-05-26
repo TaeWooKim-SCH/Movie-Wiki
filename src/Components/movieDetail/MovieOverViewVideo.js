@@ -20,14 +20,16 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
       <div className="my-10 border-[0.3px] border-slate-600" />
       <div className="flex h-fit w-fit gap-5 text-white ">
         <MoviePoster src={postURL} alt="moviePoster" />
-        <div className="flex w-full justify-between">
+        <div className="relative flex h-80 w-full justify-between gap-5">
           <OverviewDiv>
-            <p className="break-keep">{movieData.overview}</p>
+            <p className="mb-1 break-keep text-sm lg:text-base">
+              {movieData.overview}
+            </p>
             <ul>
               {movieData.genres.map(genre => {
                 return (
                   <MovieGenres
-                    className="px-[20px] py-[5px] text-xs"
+                    className="lg: mb-2 px-[10px] py-[5px] text-xs lg:px-[20px]"
                     key={genre.id}
                   >
                     {genre.name}
@@ -38,13 +40,13 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
           </OverviewDiv>
           {videoPath && (
             <iframe
-              width="30%"
-              height="50%"
+              width="240rem"
+              height="160rem"
               src={`https://www.${videoPath.site}.com/embed/${videoPath.key}`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-              className="self-end"
+              className="hidden self-center md:block"
             />
           )}
         </div>
@@ -54,7 +56,7 @@ function MovieOverViewVideo({ postURL, movieData, videoData }) {
 }
 
 const MoviePoster = tw.img`
- w-1/5 border-[0.3px] border-slate-600
+ w-42 h-72 border-[0.3px] border-slate-600
 `;
 
 const MovieGenres = styled.li`
@@ -66,7 +68,7 @@ const MovieGenres = styled.li`
 `;
 
 const OverviewDiv = tw.div`
-flex h-full w-1/2 flex-col justify-between
+flex h-72 flex-col justify-between
 `;
 
 export default MovieOverViewVideo;

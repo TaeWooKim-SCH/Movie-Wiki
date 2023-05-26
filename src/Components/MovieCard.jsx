@@ -2,18 +2,29 @@ import React, { useState } from 'react';
 import tw from 'tailwind-styled-components';
 import { IoStarSharp } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
-import { TEXT_LENGTH_LIMIT, STORY_LENGTH_LIMIT } from '../Assets/ConstantValue';
+import {
+  TEXT_LENGTH_LIMIT,
+  STORY_LENGTH_LIMIT,
+  YEAR_LENGTH_LIMIT,
+  STAR_POINT_INITIAL_NUMBER,
+} from '../Assets/ConstantValue';
 import { movieIdActions } from '../Store/movieId-slice';
-import useScrollLock from '../Hooks/use-scrollLock';
+import useScrollLock from '../Hooks/useScrollLock';
 
 function MovieCard({ movie }) {
   const dispatch = useDispatch();
   const [isMouseOn, setIsMouseOn] = useState(false);
   const { lockScroll } = useScrollLock();
   const { title, overview } = movie;
-  const moviePoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
-  const date = movie.release_date.slice(0, 4);
-  const starPoint = movie.vote_average;
+  const moviePoster = movie.poster_path
+    ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+    : '/defaultPoster.png';
+  const date = movie.release_date
+    ? movie.release_date.slice(0, YEAR_LENGTH_LIMIT)
+    : 'xxxx';
+  const starPoint = movie.vote_average
+    ? movie.vote_average.toFixed(1)
+    : STAR_POINT_INITIAL_NUMBER;
   const cardPosterClassName = isMouseOn && 'scale-105 brightness-40';
 
   const textLengthOverCut = (text, len) => {
@@ -74,37 +85,37 @@ function MovieCard({ movie }) {
 }
 
 const Card = tw.article`
-  flex
-  flex-col
-  w-44
-  h-64
   m-5
+  flex
+  h-64
+  w-44
   cursor-pointer
+  flex-col
   text-base
 `;
 
 const CardPoster = tw.img`
-  top-0
-  left-0
-  w-full
-  h-full
   absolute
+  left-0
+  top-0
+  h-full
+  w-full
   duration-300
   backface-hidden
 `;
 
 const CardStory = tw.div`
-  w-full
-  h-full
-  top-0
-  left-0
   absolute
+  left-0
+  top-0
   z-10
+  flex
+  h-full
+  w-full
+  items-center
+  justify-center
   p-2
   text-white
-  flex
-  justify-center
-  items-center
   duration-300
 `;
 
