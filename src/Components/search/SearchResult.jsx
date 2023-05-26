@@ -1,13 +1,13 @@
 import React from 'react';
-import MovieCard from './MovieCard';
+import MovieCard from '../MovieCard';
 
 export default function SearchResult({ data, keyword }) {
   return (
     <section>
-      <div className="text-2xl font-bold text-white">
+      <div className="mb-5 text-3xl font-bold text-white">
         {keyword}로 검색한 결과
       </div>
-      <section className="flex flex-wrap justify-center">
+      <section className="flex flex-wrap justify-start">
         {data.map(x => (
           <MovieCard movie={x} key={x.id} />
         ))}

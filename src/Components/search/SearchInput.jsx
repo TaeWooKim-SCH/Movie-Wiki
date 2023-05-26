@@ -8,6 +8,11 @@ export default function SearchInput({ inputHandler, searchHandler }) {
         className="mb-32 h-14 w-400 rounded-full pl-5"
         placeholder="검색어를 입력해주세요."
         onChange={e => inputHandler(e)}
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            searchHandler();
+          }
+        }}
       />
       <AiOutlineSearch
         className="absolute right-4 top-7 cursor-pointer"
