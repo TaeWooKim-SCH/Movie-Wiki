@@ -6,6 +6,7 @@ import { movieGenreData } from '../API/movie';
 import MovieCard from '../Components/MovieCard';
 import useFetchMovie from '../Hooks/useFetchMovie';
 import useIntersectionObserver from '../Hooks/useIntersectionObserver';
+import TopButton from '../Components/TopButton';
 import EmptyMovie from '../Components/EmptyMovie';
 
 function Category() {
@@ -103,6 +104,7 @@ function Category() {
 
   return (
     <section id="category" className="ml-56">
+      <TopButton />
       <div className="m-5">
         <TagContainer>
           {GENRE_LIST.map(e => (
