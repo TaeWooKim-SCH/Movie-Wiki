@@ -17,7 +17,6 @@ function RecommendMovieLi({ category }) {
     fetch();
   }, []);
 
-  // Todo 스크롤 끝나고 모달 켜지는거 막아야함
   return (
     <ScrollContainer className="relative">
       {!!datas.length &&

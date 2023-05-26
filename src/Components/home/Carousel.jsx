@@ -12,7 +12,6 @@ import {
 function Carousel() {
   const [imgArr, setImgArr] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const imgRef = useRef();
   const savedCallback = useRef();
   const transitionStyle = `transform ${TRANSITION_TIME}ms ease 0s`;
   const [slideTransiton, setSlideTransiton] = useState(transitionStyle);
@@ -78,7 +77,7 @@ function Carousel() {
         currentindex={currentIndex}
         slidetransiton={slideTransiton}
       >
-        {imgArr && imgArr.map((el, idx) => <img ref={imgRef} src={el} />)}
+        {imgArr && imgArr.map(imgUrl => <img src={imgUrl} />)}
       </Slider>
     </div>
   );
