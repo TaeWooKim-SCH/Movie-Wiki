@@ -19,13 +19,11 @@ module.exports = {
       },
       borderWidth: {
         DEFAULT: '1px',
-        spacing: {
-          1216: '1216px',
-          400: '400px',
-        },
       },
       width: {
         1280: '1280px',
+        1216: '1216px',
+        400: '400px',
       },
     },
   },

@@ -120,7 +120,7 @@ function Category() {
       </div>
       <div className="flex flex-wrap">
         {genreList && genreList.map(e => <MovieCard movie={e} key={e.id} />)}
-        {emptyData && <EmptyMovie />}
+        {emptyData && <EmptyMovie message="Please change the tag." />}
       </div>
       <div id="nextPage" ref={target} />
       {isLoading && (
