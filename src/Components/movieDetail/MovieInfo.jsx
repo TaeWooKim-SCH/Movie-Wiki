@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BsBookmarkPlus, BsFillBookmarkPlusFill } from 'react-icons/bs';
-import tw from 'tailwind-styled-components';
 import StarRatings from 'react-star-ratings';
+import BoldP from '../../Styles/style';
 
 function MovieInfo({ movieData, creditData }) {
   const [isBookmarkChecked, setIsBookmarkChecked] = useState(false);
@@ -64,9 +64,5 @@ function MovieInfo({ movieData, creditData }) {
     </>
   );
 }
-
-const BoldP = tw.p`
-  font-bold
-`;
 
 export default MovieInfo;

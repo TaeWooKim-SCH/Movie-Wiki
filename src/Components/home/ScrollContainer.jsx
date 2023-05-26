@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import throttle from '../../utils/throttle';
-import Mouse from './Mouse';
 
 function ScrollContainer({ children }) {
   const scrollRef = useRef(null);
@@ -47,8 +46,7 @@ function ScrollContainer({ children }) {
 }
 
 const ScrollUL = tw.ul`
-relative flex overflow-x-scroll scrollbar-hide pt-5
-cursor-ew-resize
+relative flex cursor-ew-resize overflow-x-scroll pt-5 scrollbar-hide
 `;
 
 export default ScrollContainer;
