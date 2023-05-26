@@ -18,7 +18,7 @@ function MovieCard({ movie }) {
   const { title, overview } = movie;
   const moviePoster = movie.poster_path
     ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-    : 'https://skydomepictures.com/wp-content/uploads/2018/08/movie-poster-coming-soon-2.png';
+    : '/defaultPoster.png';
   const date = movie.release_date
     ? movie.release_date.slice(0, YEAR_LENGTH_LIMIT)
     : 'xxxx';
