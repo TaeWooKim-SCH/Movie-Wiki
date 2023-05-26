@@ -3,6 +3,7 @@ import tw from 'tailwind-styled-components';
 import SearchInput from '../Components/search/SearchInput';
 import SearchResult from '../Components/search/SearchResult';
 import SearchSimilar from '../Components/search/SearchSimilar';
+import TopButton from '../Components/TopButton';
 
 export default function Search() {
   const [input, setInput] = useState('');
@@ -52,6 +53,7 @@ export default function Search() {
 
   return (
     <SearchMain id="search">
+      <TopButton />
       <SearchInput inputHandler={inputHandler} searchHandler={searchHandler} />
       <section className="max-w-[900px]">
         {!data.length && (
