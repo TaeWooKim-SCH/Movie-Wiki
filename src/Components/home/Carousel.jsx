@@ -78,8 +78,7 @@ function Carousel() {
         currentindex={currentIndex}
         slidetransiton={slideTransiton}
       >
-        {imgArr &&
-          imgArr.map(imgUrl => <img src={imgUrl} className="h-full w-full" />)}
+        {imgArr && imgArr.map(imgUrl => <img src={imgUrl} />)}
       </Slider>
     </div>
   );
