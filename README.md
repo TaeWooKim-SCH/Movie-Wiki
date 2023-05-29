@@ -4,11 +4,12 @@ TMDB API를 통해 영화 정보를 제공하는 웹 프로젝트입니다. 이 
 ## Stack
 <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/>
 
-CRA를 통해 프로젝트를 생성했습니다. 그리고 ESLint와 Prettier는 AirBnb 가이드를 따랐습니다. <br/>
-CSS 프레임워크로는 다양한 경험을 해보기 위해 테일윈드와 테일윈드 스타일드 컴포넌트를 사용했습니다. 스타일링이 많아질수록 클래스명이 너무 길어져 전체적인 코드의 가독성이 떨어진다는 단점이 있어 테일윈드 스타일드 컴포넌트와 함께 사용했습니다. <br/>
-처음에는 테일윈드의 정해진 수치와 속성명 때문에 불편했지만 쓰다 보니 오히려 바로바로 HTML을 작성하며 스타일링을 할 수 있어서 편했습니다.
+```CSS```: 다양한 경험을 해보기 위해 테일윈드와 테일윈드 스타일드 컴포넌트를 사용했습니다. 스타일링이 많아질수록 클래스명이 너무 길어져 전체적인 코드의 가독성이 떨어진다는 단점이 있어 테일윈드 스타일드 컴포넌트와 함께 사용했습니다. <br/>
+```ESLint & Prettier```: AirBnb <br/>
 
 ## 기획
+```담당 파트```: Header, Search <br/>
+```Git Strategy```: Git Flow <br/>
 기획은 Figjam과 Figma로 진행했습니다.<br/>
 먼저 사용자에게 어떤 정보를 보여줄지부터 고민을 하고 다른 큰 플랫폼들을 참고하기도 했습니다. <br/>
 이 사이트는 페이지가 총 3페이지 Home/Search/Category로 나누어져 있습니다. 이 중에서 저는 Search 페이지와 추가로 Navbar까지 구현했습니다.<br/>
@@ -27,10 +28,6 @@ Navbar의 기능으로는 총 3개의 페이지를 라우팅하고 Link로 페�
 이렇게 하니 중복 fetching 문제가 해결되었습니다. 전부터 이런 비동기적인 부분이 저에게는 어렵다는 것을 알았습니다. 아직 JavaScript 지식이 부족한 것 같아 비동기에 대해 더 공부할 계획입니다.<br/>
 
 ### 😅 무한 스크롤: EventListener VS ObserverAPI
-한 페이지 안에 검색 결과 영화에 대한 데이터 fetching과 추천 영화에 대한 데이터 fetching이 있다 보니 이 두 개의 fetch가 중복해서 발생해서 계속 에러가 났었습니다. <br/>
-그래서 isLoading이라는 상태를 만들어 각 useEffect 훅마다 isLoading이 true일 때에는 리턴을 시켜줬습니다. 그리고 데이터가 fetching이 되는 동안은 isLoading 상태가 true가 되도록 구현했습니다.<br/>
-이렇게 하니 중복 fetching 문제가 해결되었습니다. 전부터 이런 비동기적인 부분이 저에게는 어렵다는 것을 알았습니다. 아직 JavaScript 지식이 부족한 것 같아 비동기에 대해 더 공부할 계획입니다.<br/>
-### 무한 스크롤: EventListener VS ObserverAPI
 처음에 무한 스크롤을 구현하려고 했을 때 라이브러리도 만들어진 게 많고 구글에만 검색해도 어떤식으로 구현했는지 다 나와있었습니다. 하지만 저는 구글에 검색을 해보기 전에 한 번 스스로 로직을 짜고 직접 구현을 해보자고 마음을 먹었습니다. 제가 생각한 로직은 다음과 같이 두 방식이 있습니다.<br/>
 - 스크롤 이벤트 사용
 1. 스크롤을 합니다.
