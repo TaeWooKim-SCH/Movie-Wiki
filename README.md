@@ -1,5 +1,5 @@
 # 영화 정보 웹 프로젝트
-TMDB API를 통해 영화 정보를 제공하는 웹 프로젝트입니다. 이 프로젝트는 팀 프로젝트입니다.
+TMDB API를 통해 영화 정보를 제공하는 웹 프로젝트입니다. 이 프로젝트는 팀 프로젝트로 디자인 보다는 기능과 협업 경험에 목적을 둔 프로젝트입니다.
 
 ## Stack
 <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/>
@@ -8,12 +8,11 @@ TMDB API를 통해 영화 정보를 제공하는 웹 프로젝트입니다. 이 
 ```ESLint & Prettier```: AirBnb <br/>
 
 ## 기획
-```담당 파트```: Header, Search <br/>
+기획과 디자인은 팀원들과 함께 Figjam과 Figma로 진행했습니다.<br/>
 ```Git Strategy```: Git Flow <br/>
-기획은 Figjam과 Figma로 진행했습니다.<br/>
-먼저 사용자에게 어떤 정보를 보여줄지부터 고민을 하고 다른 큰 플랫폼들을 참고하기도 했습니다. <br/>
-이 사이트는 페이지가 총 3페이지 Home/Search/Category로 나누어져 있습니다. 이 중에서 저는 Search 페이지와 추가로 Navbar까지 구현했습니다.<br/>
-Navbar의 기능으로는 총 3개의 페이지를 라우팅하고 Link로 페이지 이동이 가능한 기능과 저희 팀의 노션과 깃허브로 연결된 부분이 있습니다. Search 페이지의 기능은 검색 기능과 무한 스크롤 기능이 있습니다.
+```담당 파트```: Header, Search <br/>
+```담당 페이지```: Search <br/>
+```기능```: Navbar 라우팅, 검색, 무한 스크롤
 
 ## 문제 해결 과정
 ### 😅 검색: 간단 버그
