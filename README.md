@@ -4,15 +4,15 @@ TMDB API를 통해 영화 정보를 제공하는 웹 프로젝트입니다. 이 
 ## Stack
 <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/>
 
-```CSS```: 다양한 경험을 해보기 위해 테일윈드와 테일윈드 스타일드 컴포넌트를 사용했습니다. 스타일링이 많아질수록 클래스명이 너무 길어져 전체적인 코드의 가독성이 떨어진다는 단점이 있어 테일윈드 스타일드 컴포넌트와 함께 사용했습니다. <br/>
-```ESLint & Prettier```: AirBnb <br/>
+- ```CSS```: 다양한 경험을 해보기 위해 테일윈드와 테일윈드 스타일드 컴포넌트를 사용했습니다. 스타일링이 많아질수록 클래스명이 너무 길어져 전체적인 코드의 가독성이 떨어진다는 단점이 있어 테일윈드 스타일드 컴포넌트와 함께 사용했습니다. <br/>
+- ```ESLint & Prettier```: AirBnb <br/>
 
 ## 기획
 기획과 디자인은 팀원들과 함께 Figjam과 Figma로 진행했습니다.<br/>
-```Git Strategy```: Git Flow <br/>
-```담당 파트```: Header, Search <br/>
-```담당 페이지```: Search <br/>
-```기능```: Navbar 라우팅, 검색, 무한 스크롤
+- ```Git Strategy```: Git Flow <br/>
+- ```담당 파트```: Header, Search <br/>
+- ```담당 페이지```: Search <br/>
+- ```기능```: Navbar 라우팅, 검색, 무한 스크롤
 
 ## 문제 해결 과정
 ### 😅 검색: 간단 버그
