@@ -1,6 +1,7 @@
 # 영화 정보 웹 프로젝트
 TMDB API를 통해 영화 정보를 제공하는 웹 프로젝트입니다. 이 프로젝트는 팀 프로젝트로 디자인 보다는 기능과 협업 경험에 목적을 둔 프로젝트입니다.
 
+
 ## Stack
 <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"/> <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=ESLint&logoColor=white"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=flat-square&logo=Prettier&logoColor=white"/>
 
@@ -40,6 +41,8 @@ TMDB API를 통해 영화 정보를 제공하는 웹 프로젝트입니다. 이 
 
 ## 느낀점
 다 만들고 보니 특별한 기능은 없는 것 같았습니다. 하지만 경험했던 기능이더라도 그 프로젝트에 맞게 좋은 코드로 구현하는 것은 항상 새로웠습니다. 그리고 실무에 가면 혼자보다 다른 사람들과 Git을 이용해 협업을 해야 하는 상황이 훨씬 많기 때문에 Git에 대해 공부를 할 수 있어 좋은 프로젝트였습니다.
+
+## 배포 링크: https://croa-moviewiki.netlify.app/
 
 ## 완성 결과
 ![image](https://github.com/TaeWooKim-SCH/Movie-Wiki/assets/79956107/fd86251d-88d2-4945-bb3d-f9605cfc2b1e)
